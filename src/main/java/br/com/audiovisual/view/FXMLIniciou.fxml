@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="373.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.IniciouController">
+   <children>
+      <Label layoutX="85.0" layoutY="30.0" text="Parabens voce iniciou sua aplicaçao!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbTeste" layoutX="179.0" layoutY="153.0" prefHeight="200.0" prefWidth="256.0">
+         <columns>
+            <TableColumn fx:id="clNome" prefWidth="256.0" text="nome" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
