@@ -1,4 +1,4 @@
-package application;
+package br.com.audiovisual;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
