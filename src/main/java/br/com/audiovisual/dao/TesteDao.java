@@ -12,28 +12,28 @@ import br.com.audiovisual.ConnectionFactory.ConnectionFactory;
 import br.com.audiovisual.model.Teste;
 
 public class TesteDao {
-	
+
 	private PreparedStatement stmt;
 	private Connection con;
 	private Statement stm;
 	private ConnectionFactory connection = null;
-	
+
 	public TesteDao() {
 		this.connection = new ConnectionFactory();
 		this.con = this.connection.getConnection();
 	}
-	
+
 	String sqlSalvar = "INSERT INTO teste(nome) VALUES(?)";
-	
+
 	public void salvarTeste(Teste teste) throws SQLException {
 		con.setAutoCommit(false);
 		stmt = con.prepareStatement(sqlSalvar);
-		
+
 		stmt.setString(1, teste.getNome());
-		
+
 		stmt.executeUpdate();
 		con.commit();
-		
+
 	}
 
 	public List<Teste> listarTestes() throws SQLException {
@@ -41,9 +41,10 @@ public class TesteDao {
 		ResultSet res = null;
 		stm = con.createStatement();
 		res = stm.executeQuery("select * from teste");
-		while(res.next()) {
+		while (res.next()) {
 			Teste teste = new Teste();
-			
+
+			teste.setId(res.getLong("id"));
 			teste.setNome(res.getString("nome"));
 			lista.add(teste);
 		}

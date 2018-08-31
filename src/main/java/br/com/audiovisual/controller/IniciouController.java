@@ -21,11 +21,14 @@ public class IniciouController implements Initializable {
 	@FXML
 	private TableColumn<Teste, String> clNome;
 
+	@FXML
+	private TableColumn<Teste, Long> clId;
+
 	TesteService testeService = new TesteService();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		clId.setCellValueFactory(new PropertyValueFactory<Teste, Long>("id"));
 		clNome.setCellValueFactory(new PropertyValueFactory<Teste, String>("nome"));
 		tbTeste.setItems(populaTabela());
 	}

@@ -46,6 +46,10 @@ public class StartController implements Serializable {
 	public void setarDados() {
 		teste.setNome(txtNome.getText());
 	}
+	
+	public void limparCampo() {
+		txtNome.setText("");
+	}
 
 	@FXML
 	public void salvar() throws SQLException {
@@ -53,5 +57,7 @@ public class StartController implements Serializable {
 		setarDados();
 		testeService.salvar(teste);
 		testes.add(teste);
+		teste = new Teste();
+		limparCampo();
 	}
 }
