@@ -1,31 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.PessoaController">
 	<children>
-		<MenuBar fx:id="mbMenu" layoutY="2.0" prefHeight="33.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<menus>
-				<Menu mnemonicParsing="false" text="Cadastros">
-					<items>
-						<MenuItem fx:id="miPessoa" mnemonicParsing="false" text="Pessoa" />
-						<MenuItem fx:id="miTeste" mnemonicParsing="false" onAction="#chamarTeste" text="Teste" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Edit">
-					<items>
-						<MenuItem mnemonicParsing="false" text="Delete" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Help">
-					<items>
-						<MenuItem mnemonicParsing="false" text="About" />
-					</items>
-				</Menu>
-			</menus>
-		</MenuBar>
+      <SplitPane dividerPositions="0.31270903010033446" layoutX="250.0" layoutY="62.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+            		<MenuBar fx:id="mbMenu" layoutX="-1.0" layoutY="8.0" prefHeight="33.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            			<menus>
+            				<Menu mnemonicParsing="false" text="Cadastros">
+            					<items>
+            						<MenuItem fx:id="miPessoa" mnemonicParsing="false" text="Pessoa" />
+            						<MenuItem fx:id="miTeste" mnemonicParsing="false" onAction="#chamarTeste" text="Teste" />
+            					</items>
+            				</Menu>
+            				<Menu mnemonicParsing="false" text="Edit">
+            					<items>
+            						<MenuItem mnemonicParsing="false" text="Delete" />
+            					</items>
+            				</Menu>
+            				<Menu mnemonicParsing="false" text="Help">
+            					<items>
+            						<MenuItem mnemonicParsing="false" text="About" />
+            					</items>
+            				</Menu>
+            			</menus>
+            		</MenuBar>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <JFXTreeTableView layoutX="286.0" layoutY="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TreeTableColumn prefWidth="75.0" text="Column X" />
+                        <TreeTableColumn fx:id="tbAlugado" prefWidth="75.0" text="Column X" />
+                        <TreeTableColumn prefWidth="75.0" text="Column X" />
+                        <TreeTableColumn prefWidth="75.0" text="Column X" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </JFXTreeTableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
 	</children>
 </AnchorPane>
