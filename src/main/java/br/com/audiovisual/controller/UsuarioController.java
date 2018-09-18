@@ -1,16 +1,26 @@
 package br.com.audiovisual.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import br.com.audiovisual.enuns.TipoUsuario;
+import br.com.audiovisual.model.Usuario;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.GridPane;
 
 public class UsuarioController implements Initializable {
 
@@ -37,7 +47,17 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	private JFXButton btExcluir;
+	
+	@FXML
+	private GridPane grdCadastroUsuario;
 
+	@FXML
+	private TableColumn<Usuario, String> clnNome, clnEmail, clnCelular, clnTelefoneFixo, clnTipo;
+	
+	@FXML
+	private TableView<Usuario> tblUsuarios;
+	
+	private ObservableList<Usuario> _usuarios = FXCollections.observableArrayList();
 
 	@FXML
 	void editar(ActionEvent event) {
@@ -51,7 +71,27 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	void salvar(ActionEvent event) {
-
+		if(!PodeSalvar()) return;
+		
+		TipoUsuario tipoUsuario = cbTipoPessoa.getSelectionModel().getSelectedItem();
+		_usuarios.add(
+				new Usuario(1L, txtNome.getText(), txtEmail.getText(), txtCelular.getText(), tipoUsuario)
+		);
+		AdicioneNaGrid();
+		
+	}
+	
+	private void AdicioneNaGrid() {
+		clnNome.setCellValueFactory(p -> p.getValue().getNome());
+		clnEmail.setCellValueFactory(p -> p.getValue().getEmail());
+		clnCelular.setCellValueFactory(p -> p.getValue().getTelefone());
+		clnCelular.setCellValueFactory(p -> p.getValue().getTelefone());
+		clnTipo.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getTipoUsuario().getName()));
+		this.tblUsuarios.setItems(_usuarios);
+	}
+	
+	private boolean PodeSalvar() {
+		return true;
 	}
 	
 	private void carregarTipoUsuario() {
@@ -61,8 +101,8 @@ public class UsuarioController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		AdicioneNaGrid();
 		carregarTipoUsuario();
-		
 	}
 
 }
