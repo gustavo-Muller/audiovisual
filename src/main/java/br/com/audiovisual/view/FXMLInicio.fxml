@@ -19,7 +19,7 @@
             			<menus>
             				<Menu mnemonicParsing="false" text="Cadastros">
             					<items>
-            						<MenuItem fx:id="miPessoa" mnemonicParsing="false" text="Pessoa" />
+            						<MenuItem fx:id="miPessoa" mnemonicParsing="false" onAction="#chamarCadastroUsuario" text="Pessoa" />
             						<MenuItem fx:id="miTeste" mnemonicParsing="false" onAction="#chamarTeste" text="Teste" />
             					</items>
             				</Menu>

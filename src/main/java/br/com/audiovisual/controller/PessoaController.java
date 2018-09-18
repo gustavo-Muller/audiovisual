@@ -30,5 +30,14 @@ public class PessoaController {
 			stage.initStyle(StageStyle.UTILITY);
 			stage.show();
 	}
+	
+	public void chamarCadastroUsuario() throws IOException {
+		Stage stage = new Stage();
+		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLPessoaCadastro.fxml"));
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
+}
 
 }
