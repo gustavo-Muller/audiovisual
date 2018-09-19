@@ -1,8 +1,6 @@
 package br.com.audiovisual.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -10,7 +8,6 @@ import com.jfoenix.controls.JFXTextField;
 
 import br.com.audiovisual.enuns.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
