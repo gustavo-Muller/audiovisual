@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.UsuarioController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.UsuarioController">
 	<children>
 		<SplitPane dividerPositions="0.2909698996655518" layoutX="-10.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="607.0" prefWidth="809.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<items>
@@ -36,7 +36,7 @@
 								<Label text="Nome *" />
 								<Label text="E-mail *" GridPane.rowIndex="1" />
 								<Label text="Celular *" GridPane.rowIndex="2" />
-								<Label text="Telef. (fixo) " GridPane.rowIndex="3" />
+								<Label prefHeight="16.0" prefWidth="90.0" text="Telef. (fixo) " GridPane.rowIndex="3" />
 								<Label text="Tipo *" GridPane.rowIndex="4" />
 								<JFXTextField fx:id="txtNome" GridPane.columnIndex="1">
 									<GridPane.margin>

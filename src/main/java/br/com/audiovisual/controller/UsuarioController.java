@@ -44,16 +44,16 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	private JFXButton btExcluir;
-	
+
 	@FXML
 	private GridPane grdCadastroUsuario;
 
 	@FXML
 	private TableColumn<Usuario, String> clnNome, clnEmail, clnCelular, clnTelefoneFixo, clnTipo;
-	
+
 	@FXML
 	private TableView<Usuario> tblUsuarios;
-	
+
 	private ObservableList<Usuario> _usuarios = FXCollections.observableArrayList();
 
 	@FXML
@@ -68,29 +68,37 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	void salvar(ActionEvent event) {
-		if(!PodeSalvar()) return;
-		
+		if (!PodeSalvar())
+			return;
+
 		TipoUsuario tipoUsuario = cbTipoPessoa.getSelectionModel().getSelectedItem();
-		_usuarios.add(
-				new Usuario(1L, txtNome.getText(), txtEmail.getText(), txtCelular.getText(), tipoUsuario)
-		);
+		_usuarios.add(new Usuario(1L, txtNome.getText(), txtEmail.getText(), txtCelular.getText(),
+				txtTelefone.getText(), tipoUsuario));
 		AdicioneNaGrid();
-		
+		clear();
+
 	}
-	
+
+	private void clear() {
+		txtCelular.setText(null);
+		txtEmail.setText(null);
+		txtNome.setText(null);
+		txtTelefone.setText(null);
+	}
+
 	private void AdicioneNaGrid() {
 		clnNome.setCellValueFactory(p -> p.getValue().getNome());
 		clnEmail.setCellValueFactory(p -> p.getValue().getEmail());
-		clnCelular.setCellValueFactory(p -> p.getValue().getTelefone());
-		clnCelular.setCellValueFactory(p -> p.getValue().getTelefone());
+		clnCelular.setCellValueFactory(p -> p.getValue().getCelular());
+		clnTelefoneFixo.setCellValueFactory(p -> p.getValue().getTelefone());
 		clnTipo.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getTipoUsuario().getName()));
 		this.tblUsuarios.setItems(_usuarios);
 	}
-	
+
 	private boolean PodeSalvar() {
 		return true;
 	}
-	
+
 	private void carregarTipoUsuario() {
 		cbTipoPessoa.getItems().add(null);
 		cbTipoPessoa.getItems().addAll(TipoUsuario.values());
