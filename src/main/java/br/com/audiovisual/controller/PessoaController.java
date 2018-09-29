@@ -21,16 +21,19 @@ public class PessoaController {
 
 	@FXML
 	private MenuItem miTeste;
-	
+
+	@FXML
+	private MenuItem miEquipamento;
+
 	public void chamarTeste() throws IOException {
-			Stage stage = new Stage();
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLStart.fxml"));
-			Scene scene = new Scene(pane);
-			stage.setScene(scene);
-			stage.initStyle(StageStyle.UTILITY);
-			stage.show();
+		Stage stage = new Stage();
+		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLStart.fxml"));
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
 	}
-	
+
 	public void chamarCadastroUsuario() throws IOException {
 		Stage stage = new Stage();
 		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLPessoaCadastro.fxml"));
@@ -38,6 +41,16 @@ public class PessoaController {
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.UTILITY);
 		stage.show();
-}
+	}
+
+	@FXML
+	void irParaCadastroEquipamento() throws IOException {
+		Stage stage = new Stage();
+		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelho.fxml"));
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
+	}
 
 }
