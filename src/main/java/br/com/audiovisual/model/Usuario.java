@@ -17,13 +17,17 @@ public class Usuario {
 	private StringProperty celular;
 	private ObjectProperty<TipoUsuario> tipoUsuario;
 
-	public Usuario(Long i, String nome, String email, String telefone, String celular, TipoUsuario tipoUsuario) {
-		this.id = new SimpleLongProperty(i);
+	public Usuario(Long id, String nome, String email, String telefone, String celular, TipoUsuario tipoUsuario) {
+		this.id = new SimpleLongProperty(id);
 		this.nome = new SimpleStringProperty(nome);
 		this.email = new SimpleStringProperty(email);
 		this.telefone = new SimpleStringProperty(telefone);
 		this.celular = new SimpleStringProperty(celular);
 		this.tipoUsuario = new SimpleObjectProperty<TipoUsuario>(tipoUsuario);
+	}
+
+	public Usuario() {
+
 	}
 
 	public LongProperty getId() {
