@@ -16,9 +16,6 @@ public class EquipamentoController {
 	private JFXTextField txtCodigo;
 
 	@FXML
-	private JFXTextField txtTipo;
-
-	@FXML
 	private JFXTextField txtMarca;
 
 	@FXML
