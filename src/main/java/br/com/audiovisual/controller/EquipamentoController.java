@@ -28,12 +28,20 @@ public class EquipamentoController {
 	private JFXButton btnLimpar;
 
 	@FXML
+	private JFXButton btnListar;
+
+	@FXML
 	void limpar(ActionEvent event) {
 
 	}
 
 	@FXML
 	void salvar(ActionEvent event) {
+
+	}
+
+	@FXML
+	void listar(ActionEvent event) {
 
 	}
 
