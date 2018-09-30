@@ -47,7 +47,7 @@ public class PessoaController {
 	void irParaCadastroEquipamento() throws IOException {
 		Stage stage = new Stage();
 		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelho.fxml"));
-		Scene scene = new Scene(pane);
+		Scene scene = new Scene(pane, 635, 363);
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.UTILITY);
 		stage.show();

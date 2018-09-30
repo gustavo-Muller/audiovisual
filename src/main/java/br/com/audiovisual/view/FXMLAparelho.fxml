@@ -21,8 +21,8 @@
 		</Label>
 		<GridPane layoutX="5.0" layoutY="57.0" prefHeight="242.0" prefWidth="737.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 			<columnConstraints>
-				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="91.0" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="494.0" />
+				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="92.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="427.0" />
 				<ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="149.0" />
 			</columnConstraints>
 			<rowConstraints>
@@ -38,7 +38,7 @@
 				<Label text="Tipo*" GridPane.rowIndex="2" />
 				<Label text="Marca" GridPane.rowIndex="3" />
 				<Label text="Descrição*" GridPane.rowIndex="4" />
-				<JFXTextField fx:id="txtNome" GridPane.columnIndex="1" />
+				<JFXTextField fx:id="txtNome" prefHeight="25.0" prefWidth="446.0" GridPane.columnIndex="1" />
 				<JFXTextField fx:id="txtCodigo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 				<JFXTextField fx:id="txtMarca" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 				<JFXTextArea fx:id="txtDescricao" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -51,10 +51,7 @@
 				<JFXButton fx:id="btnLimpar" buttonType="RAISED" onAction="#limpar" prefHeight="25.0" prefWidth="54.0" ripplerFill="RED" style="-fx-background-color: red;" text="Limpar" />
 			</children>
 		</HBox>
-      <HBox layoutX="541.0" layoutY="322.0" prefHeight="17.0" prefWidth="57.0">
-         <children>
-            <JFXButton fx:id="btnListar" buttonType="RAISED" onAction="#listar" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: red;" text="Listar" />
-         </children>
-      </HBox>
+      <HBox layoutX="541.0" layoutY="322.0" prefHeight="17.0" prefWidth="57.0" />
+      <JFXButton fx:id="btnListar" buttonType="RAISED" layoutX="430.0" layoutY="318.0" onAction="#listar" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: red;" text="Listar" />
 	</children>
 </AnchorPane>
