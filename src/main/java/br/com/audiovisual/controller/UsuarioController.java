@@ -1,6 +1,9 @@
 package br.com.audiovisual.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -8,15 +11,15 @@ import com.jfoenix.controls.JFXTextField;
 
 import br.com.audiovisual.enuns.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
-import javafx.beans.property.SimpleStringProperty;
+import br.com.audiovisual.service.UsuarioService;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
 public class UsuarioController implements Initializable {
@@ -54,7 +57,10 @@ public class UsuarioController implements Initializable {
 	@FXML
 	private TableView<Usuario> tblUsuarios;
 
-	private ObservableList<Usuario> _usuarios = FXCollections.observableArrayList();
+
+	private UsuarioService service = new UsuarioService();
+	List<Usuario> usuarios = new ArrayList<>(); 
+	private Usuario user = new Usuario();
 
 	@FXML
 	void editar(ActionEvent event) {
@@ -67,16 +73,11 @@ public class UsuarioController implements Initializable {
 	}
 
 	@FXML
-	void salvar(ActionEvent event) {
-		if (!PodeSalvar())
-			return;
-
-		TipoUsuario tipoUsuario = cbTipoPessoa.getSelectionModel().getSelectedItem();
-		_usuarios.add(new Usuario(1L, txtNome.getText(), txtEmail.getText(), txtCelular.getText(),
-				txtTelefone.getText(), tipoUsuario));
+	void salvar(ActionEvent event) throws SQLException {
+		montaObjeto();
+		service.salva(user);
 		AdicioneNaGrid();
 		clear();
-
 	}
 
 	private void clear() {
@@ -86,17 +87,32 @@ public class UsuarioController implements Initializable {
 		txtTelefone.setText(null);
 	}
 
-	private void AdicioneNaGrid() {
-		clnNome.setCellValueFactory(p -> p.getValue().getNome());
-		clnEmail.setCellValueFactory(p -> p.getValue().getEmail());
-		clnCelular.setCellValueFactory(p -> p.getValue().getCelular());
-		clnTelefoneFixo.setCellValueFactory(p -> p.getValue().getTelefone());
-		clnTipo.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getTipoUsuario().getName()));
-		this.tblUsuarios.setItems(_usuarios);
+	private void AdicioneNaGrid() throws SQLException {
+		usuarios = service.listar();
+		clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		clnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		clnTelefoneFixo.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+		clnCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
+		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		tblUsuarios.setItems(FXCollections.observableArrayList(usuarios));
+
 	}
 
-	private boolean PodeSalvar() {
-		return true;
+////	private boolean PodeSalvar() throws SQLException {
+////		montaObjeto();
+////		if (service.jaPossue(user)) {
+////			return false;
+////		}
+//
+//		return true;
+//	}
+
+	public void montaObjeto() {
+		user.setNome(txtNome.getText());
+		user.setEmail(txtEmail.getText());
+		user.setTelefone(txtTelefone.getText());
+		user.setCelular(txtCelular.getText());
+		user.setTipoUsuario(cbTipoPessoa.getValue());
 	}
 
 	private void carregarTipoUsuario() {
@@ -106,7 +122,11 @@ public class UsuarioController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		AdicioneNaGrid();
+		try {
+			AdicioneNaGrid();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		carregarTipoUsuario();
 	}
 

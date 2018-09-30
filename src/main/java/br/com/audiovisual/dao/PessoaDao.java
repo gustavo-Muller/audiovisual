@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.audiovisual.ConnectionFactory.ConnectionFactory;
+import br.com.audiovisual.enuns.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
-import javafx.beans.property.LongProperty;
 
 public class PessoaDao {
 
@@ -24,20 +24,21 @@ public class PessoaDao {
 		this.con = this.connection.getConnection();
 	}
 
-	private final String salvar = "INSERT INTO usuario(nome, email, telefone, tipo) values(?, ?, ?, ?)";
+	private final String salvar = "INSERT INTO usuario(nome, email, telefone, celular, tipo) values(?, ?, ?, ?, ?)";
 	private final String listar = "SELECT * FROM usuario";
 
 	public void salvar(Usuario pessoa) throws SQLException {
 		con.setAutoCommit(false);
 		stmt = con.prepareStatement(salvar);
 
-		stmt.setString(1, String.valueOf(pessoa.getNome()));
-		stmt.setString(2, String.valueOf(pessoa.getEmail()));
-		stmt.setString(3, String.valueOf(pessoa.getTelefone()));
-		stmt.setString(4, String.valueOf(pessoa.getCelular()));
-		stmt.setString(5, String.valueOf(pessoa.getTipoUsuario()));
+		stmt.setString(1, pessoa.getNome());
+		stmt.setString(2, pessoa.getEmail());
+		stmt.setString(3, pessoa.getTelefone());
+		stmt.setString(4, pessoa.getCelular());
+		String tipo = pessoa.getTipoUsuario().toString();
+		stmt.setString(5, tipo);
 
-		stmt.executeQuery();
+		stmt.executeUpdate();
 		con.commit();
 	}
 
@@ -50,12 +51,14 @@ public class PessoaDao {
 
 		while (res.next()) {
 			Usuario user = new Usuario();
-
-			/*
-			 * Implementar algo para pois o ResultSet não possui metodo
-			 * com suporte para  LongProperty ou qualquer tipo Property
-			 */
-
+			user.setId(res.getLong("id"));
+			user.setNome(res.getString("nome"));
+			user.setEmail(res.getString("email"));
+			user.setTelefone(res.getString("telefone"));
+			user.setCelular(res.getString("celular"));
+//			final String tipo = res.getString("tipo");
+			user.setTipoUsuario(TipoUsuario.PROFESSOR);
+			list.add(user);
 		}
 
 		return list;
