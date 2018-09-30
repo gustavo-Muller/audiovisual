@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class PessoaController {
+public class InicioController {
 
 	@FXML
 	private MenuBar mbMenu;
@@ -47,7 +47,7 @@ public class PessoaController {
 	void irParaCadastroEquipamento() throws IOException {
 		Stage stage = new Stage();
 		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelho.fxml"));
-		Scene scene = new Scene(pane, 635, 363);
+		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.UTILITY);
 		stage.show();
