@@ -52,11 +52,16 @@
             <JFXComboBox prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 			</children>
 		</GridPane>
-		<HBox layoutX="99.0" layoutY="322.0" prefHeight="55.0" prefWidth="152.0">
+		<HBox layoutX="99.0" layoutY="322.0" prefHeight="55.0" prefWidth="177.0">
 			<children>
 				<JFXButton fx:id="btnSalvar" buttonType="RAISED" onAction="#salvar" style="-fx-background-color: red;" text="Salvar" />
 				<JFXButton fx:id="btnLimpar" buttonType="RAISED" onAction="#limpar" prefHeight="25.0" prefWidth="54.0" ripplerFill="RED" style="-fx-background-color: red;" text="Limpar" />
 			</children>
 		</HBox>
+      <HBox layoutX="541.0" layoutY="322.0" prefHeight="17.0" prefWidth="57.0">
+         <children>
+            <JFXButton fx:id="btnListar" buttonType="RAISED" onAction="#listar" prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: red;" text="Listar" />
+         </children>
+      </HBox>
 	</children>
 </AnchorPane>
