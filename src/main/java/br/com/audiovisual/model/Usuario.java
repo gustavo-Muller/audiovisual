@@ -1,6 +1,6 @@
 package br.com.audiovisual.model;
 
-import br.com.audiovisual.enuns.TipoUsuario;
+import br.com.audiovisual.enumerador.TipoUsuario;
 
 public class Usuario {
 

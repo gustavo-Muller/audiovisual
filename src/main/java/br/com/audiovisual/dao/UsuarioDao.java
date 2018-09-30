@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.audiovisual.ConnectionFactory.ConnectionFactory;
-import br.com.audiovisual.enuns.TipoUsuario;
+import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
 
-public class PessoaDao {
+public class UsuarioDao {
 
 	private PreparedStatement stmt;
 	private Connection con;
 	private Statement stm;
 	private ConnectionFactory connection = null;
 
-	public PessoaDao() {
+	public UsuarioDao() {
 		this.connection = new ConnectionFactory();
 		this.con = this.connection.getConnection();
 	}
@@ -35,8 +35,8 @@ public class PessoaDao {
 		stmt.setString(2, pessoa.getEmail());
 		stmt.setString(3, pessoa.getTelefone());
 		stmt.setString(4, pessoa.getCelular());
-		String tipo = pessoa.getTipoUsuario().toString();
-		stmt.setString(5, tipo);
+		int tipo = pessoa.getTipoUsuario().getId().intValue();
+		stmt.setInt(5, tipo);
 
 		stmt.executeUpdate();
 		con.commit();

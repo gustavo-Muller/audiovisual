@@ -3,12 +3,12 @@ package br.com.audiovisual.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.audiovisual.dao.PessoaDao;
+import br.com.audiovisual.dao.UsuarioDao;
 import br.com.audiovisual.model.Usuario;
 
 public class UsuarioService {
 
-	PessoaDao dao = new PessoaDao();
+	UsuarioDao dao = new UsuarioDao();
 
 	public boolean jaPossue(Usuario user) throws SQLException {
 		boolean result;

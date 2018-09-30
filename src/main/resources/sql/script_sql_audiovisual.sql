@@ -15,5 +15,5 @@ CREATE TABLE usuario (
    email VARCHAR(100) NOT NULL,
    telefone VARCHAR(100),
    celular VARCHAR(20) NOT NULL,
-   tipo VARCHAR(50) NOT NULL
+   tipo int(20) NOT NULL
 );
