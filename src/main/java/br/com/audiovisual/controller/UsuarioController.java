@@ -9,9 +9,10 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
-import br.com.audiovisual.enuns.TipoUsuario;
+import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
 import br.com.audiovisual.service.UsuarioService;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -94,8 +95,8 @@ public class UsuarioController implements Initializable {
 		clnTelefoneFixo.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		clnCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
 		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		
 		tblUsuarios.setItems(FXCollections.observableArrayList(usuarios));
-
 	}
 
 ////	private boolean PodeSalvar() throws SQLException {

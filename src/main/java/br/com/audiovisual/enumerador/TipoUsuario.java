@@ -1,4 +1,4 @@
-package br.com.audiovisual.enuns;
+package br.com.audiovisual.enumerador;
 
 public enum TipoUsuario {
 
@@ -16,7 +16,7 @@ public enum TipoUsuario {
 		return id;
 	}
 
-	public String getValor() {
+	public String getDescricao() {
 		return valor;
 	}
 	
