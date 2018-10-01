@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="417.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutY="14.0" prefHeight="59.0" prefWidth="800.0" style="-fx-background-color: grey;" text="              Relatórios" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label layoutY="14.0" prefHeight="59.0" prefWidth="800.0" style="-fx-background-color: seagreen;" text="              Relatórios" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="67.0" />
          </font>
@@ -25,6 +25,6 @@
       <Label layoutX="127.0" layoutY="277.0" prefHeight="17.0" prefWidth="21.0" text="De:" />
       <Label layoutX="393.0" layoutY="286.0" text="Ate:" />
       <JFXDatePicker layoutX="450.0" layoutY="303.0" />
-      <JFXButton layoutX="328.0" layoutY="354.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: red;" text="Gerar" />
+      <JFXButton layoutX="328.0" layoutY="354.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: seagreen;" text="Gerar" />
    </children>
 </AnchorPane>
