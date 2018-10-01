@@ -12,7 +12,6 @@ import com.jfoenix.controls.JFXTextField;
 import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
 import br.com.audiovisual.service.UsuarioService;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
