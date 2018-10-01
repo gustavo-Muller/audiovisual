@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+   <children>
+      <Label layoutY="25.0" prefHeight="59.0" prefWidth="800.0" style="-fx-background-color: grey;" text="              Relatórios" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="67.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="210.0" prefHeight="17.0" prefWidth="116.0" text="Tipo do Relatório:" />
+      <JFXComboBox layoutX="203.0" layoutY="206.0" prefHeight="25.0" prefWidth="416.0" />
+      <Label layoutX="378.0" layoutY="265.0" text="Período:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXDatePicker layoutX="180.0" layoutY="324.0" />
+      <Label layoutX="130.0" layoutY="328.0" text="De:" />
+      <Label layoutX="392.0" layoutY="328.0" text="Ate:" />
+      <JFXDatePicker layoutX="456.0" layoutY="324.0" />
+      <JFXButton layoutX="331.0" layoutY="449.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: red;" text="Gerar" />
+   </children>
+</AnchorPane>
