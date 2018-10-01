@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.audiovisual.ConnectionFactory.ConnectionFactory;
-import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
 
 public class UsuarioDao {
@@ -56,8 +55,7 @@ public class UsuarioDao {
 			user.setEmail(res.getString("email"));
 			user.setTelefone(res.getString("telefone"));
 			user.setCelular(res.getString("celular"));
-//			final String tipo = res.getString("tipo");
-			user.setTipoUsuario(TipoUsuario.PROFESSOR);
+			user.setTipoUsuario(res.getInt("tipo"));
 			list.add(user);
 		}
 

@@ -94,7 +94,7 @@ public class UsuarioController implements Initializable {
 		clnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		clnTelefoneFixo.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		clnCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
-		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipoUsuario"));
 		
 		tblUsuarios.setItems(FXCollections.observableArrayList(usuarios));
 	}

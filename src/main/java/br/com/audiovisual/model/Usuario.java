@@ -124,4 +124,15 @@ public class Usuario {
 		return true;
 	}
 
+	public void setTipoUsuario(int id) {
+		switch (id) {
+		case 1:
+			this.tipoUsuario = TipoUsuario.PROFESSOR;
+			break;
+		case 2:
+			this.tipoUsuario = TipoUsuario.ADIMINISTRADOR;
+			break;
+		}
+	}
+
 }
