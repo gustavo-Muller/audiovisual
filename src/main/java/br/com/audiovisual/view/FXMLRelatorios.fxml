@@ -7,24 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="417.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="410.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutY="14.0" prefHeight="59.0" prefWidth="800.0" style="-fx-background-color: seagreen;" text="              Relatórios" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label prefHeight="32.0" prefWidth="800.0" style="-fx-background-color: grey;" text="                                               Relatórios" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
-            <Font size="67.0" />
+            <Font name="Calibri" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="90.0" layoutY="186.0" prefHeight="17.0" prefWidth="116.0" text="Tipo do Relatório:" />
-      <JFXComboBox layoutX="205.0" layoutY="169.0" prefHeight="25.0" prefWidth="416.0" />
-      <Label layoutX="379.0" layoutY="222.0" text="Período:">
+      <Label layoutX="90.0" layoutY="126.0" prefHeight="17.0" prefWidth="116.0" text="Tipo do Relatório:" />
+      <JFXComboBox layoutX="206.0" layoutY="109.0" prefHeight="25.0" prefWidth="416.0" />
+      <Label layoutX="370.0" layoutY="164.0" text="Período:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <JFXDatePicker layoutX="180.0" layoutY="303.0" />
-      <Label layoutX="127.0" layoutY="277.0" prefHeight="17.0" prefWidth="21.0" text="De:" />
-      <Label layoutX="393.0" layoutY="286.0" text="Ate:" />
-      <JFXDatePicker layoutX="450.0" layoutY="303.0" />
-      <JFXButton layoutX="328.0" layoutY="354.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: seagreen;" text="Gerar" />
+      <JFXDatePicker layoutX="206.0" layoutY="249.0" />
+      <Label layoutX="127.0" layoutY="232.0" prefHeight="17.0" prefWidth="21.0" text="De:" />
+      <Label layoutX="390.0" layoutY="232.0" text="Ate:" />
+      <JFXDatePicker layoutX="451.0" layoutY="249.0" />
+      <JFXButton layoutX="335.0" layoutY="324.0" prefHeight="25.0" prefWidth="131.0" style="-fx-background-color: seagreen;" text="Gerar" />
    </children>
 </AnchorPane>
