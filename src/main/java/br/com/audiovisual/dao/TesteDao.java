@@ -25,7 +25,7 @@ public class TesteDao {
 
 	String sqlSalvar = "INSERT INTO teste(nome) VALUES(?)";
 
-	public void salvarTeste(Teste teste) throws SQLException {asas
+	public void salvarTeste(Teste teste) throws SQLException {
 		con.setAutoCommit(false);
 		stmt = con.prepareStatement(sqlSalvar);
 
