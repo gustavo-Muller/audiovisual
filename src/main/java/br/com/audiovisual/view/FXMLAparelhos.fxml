@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="397.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.EquipamentosCadastradosController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="598.0" style="-fx-background-color: gray;" text="Equipamentos Cadastrados" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Calibri" size="32.0" />
+         </font>
+      </Label>
+      <TableView layoutX="-1.0" layoutY="37.0" prefHeight="292.0" prefWidth="598.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+          <TableColumn prefWidth="136.0" text="Nome" />
+          <TableColumn prefWidth="73.0" text="Código" />
+            <TableColumn prefWidth="84.0" text="Tipo" />
+            <TableColumn prefWidth="95.0" text="Marca" />
+            <TableColumn prefWidth="209.0" text="Descrição" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnRemover" buttonType="RAISED" layoutX="14.0" layoutY="348.0" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Remover" AnchorPane.bottomAnchor="12.0" />
+      <JFXButton fx:id="btnFechar" buttonType="RAISED" layoutX="505.0" layoutY="348.0" onAction="#fechar" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Fechar" />
+   </children>
+</AnchorPane>
