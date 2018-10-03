@@ -37,9 +37,9 @@ public class InicioController {
 		stage.show();
 	}
 
-	public void chamarCadastroUsuario() throws IOException {
+	public void irParaCadastroUsuario() throws IOException {
 		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLPessoaCadastro.fxml"));
+		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLUsuarioCadastro.fxml"));
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.UTILITY);
@@ -49,7 +49,7 @@ public class InicioController {
 	@FXML
 	void irParaCadastroEquipamento() throws IOException {
 		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelho.fxml"));
+		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelhoCadastro.fxml"));
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.UTILITY);

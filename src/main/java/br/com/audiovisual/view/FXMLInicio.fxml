@@ -24,7 +24,7 @@
             			<menus>
             				<Menu mnemonicParsing="false" text="Cadastros">
             					<items>
-            						<MenuItem fx:id="miPessoa" mnemonicParsing="false" onAction="#chamarCadastroUsuario" text="Usuario" />
+            						<MenuItem fx:id="miPessoa" mnemonicParsing="false" onAction="#irParaCadastroUsuario" text="Usuario" />
                               <MenuItem fx:id="miEquipamento" mnemonicParsing="false" onAction="#irParaCadastroEquipamento" text="Equipamento" />
             					</items>
             				</Menu>
@@ -32,11 +32,6 @@
                            <items>
                               <MenuItem fx:id="miLEquipamento" mnemonicParsing="false" onAction="#irParaLocacaoDeEquipamento" text="Equipamento" />
                            </items></Menu>
-            				<Menu mnemonicParsing="false" text="Help">
-            					<items>
-            						<MenuItem mnemonicParsing="false" text="About" />
-            					</items>
-            				</Menu>
             			</menus>
             		</MenuBar>
                   <HBox alignment="TOP_CENTER" layoutX="516.0" layoutY="33.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="282.0">
