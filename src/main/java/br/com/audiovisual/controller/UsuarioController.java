@@ -57,10 +57,20 @@ public class UsuarioController implements Initializable {
 	@FXML
 	private TableView<Usuario> tblUsuarios;
 
-
 	private UsuarioService service = new UsuarioService();
-	List<Usuario> usuarios = new ArrayList<>(); 
+	List<Usuario> usuarios = new ArrayList<>();
 	private Usuario user = new Usuario();
+	private Usuario usuarioSelecionado;
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		try {
+			AdicioneNaGrid();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		carregarTipoUsuario();
+	}
 
 	@FXML
 	void editar(ActionEvent event) {
@@ -68,8 +78,11 @@ public class UsuarioController implements Initializable {
 	}
 
 	@FXML
-	void excluir(ActionEvent event) {
-
+	void excluir() throws SQLException {
+		selecao();
+		this.service.ecluirUsuario(usuarioSelecionado);
+		AdicioneNaGrid();
+		clear();
 	}
 
 	@FXML
@@ -78,6 +91,15 @@ public class UsuarioController implements Initializable {
 		service.salva(user);
 		AdicioneNaGrid();
 		clear();
+	}
+
+	public void selecao() {
+		usuarioSelecionado = this.tblUsuarios.getSelectionModel().getSelectedItem();
+		this.txtNome.setText(usuarioSelecionado.getNome());
+		this.txtEmail.setText(usuarioSelecionado.getEmail());
+		this.txtCelular.setText(usuarioSelecionado.getCelular());
+		this.txtTelefone.setText(usuarioSelecionado.getTelefone());
+		this.cbTipoPessoa.getSelectionModel().select(usuarioSelecionado.getTipoUsuario());
 	}
 
 	private void clear() {
@@ -94,18 +116,9 @@ public class UsuarioController implements Initializable {
 		clnTelefoneFixo.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		clnCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
 		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipoUsuario"));
-		
+
 		tblUsuarios.setItems(FXCollections.observableArrayList(usuarios));
 	}
-
-////	private boolean PodeSalvar() throws SQLException {
-////		montaObjeto();
-////		if (service.jaPossue(user)) {
-////			return false;
-////		}
-//
-//		return true;
-//	}
 
 	public void montaObjeto() {
 		user.setNome(txtNome.getText());
@@ -120,14 +133,8 @@ public class UsuarioController implements Initializable {
 		cbTipoPessoa.getItems().addAll(TipoUsuario.values());
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		try {
-			AdicioneNaGrid();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		carregarTipoUsuario();
+	public Usuario getUsuarioSelecionado() {
+		return usuarioSelecionado;
 	}
 
 }

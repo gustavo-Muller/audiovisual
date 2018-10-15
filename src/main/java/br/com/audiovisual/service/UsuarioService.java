@@ -31,4 +31,8 @@ public class UsuarioService {
 		dao.salvar(u);
 	}
 
+	public void ecluirUsuario(Usuario usuario) throws SQLException {
+		this.dao.excluir(usuario);
+	}
+
 }

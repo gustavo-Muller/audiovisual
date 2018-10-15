@@ -25,6 +25,7 @@ public class UsuarioDao {
 
 	private final String salvar = "INSERT INTO usuario(nome, email, telefone, celular, tipo) values(?, ?, ?, ?, ?)";
 	private final String listar = "SELECT * FROM usuario";
+	private final String delete = "DELETE FROM usuario WHERE id = ?";
 
 	public void salvar(Usuario pessoa) throws SQLException {
 		con.setAutoCommit(false);
@@ -60,5 +61,15 @@ public class UsuarioDao {
 		}
 
 		return list;
+	}
+
+	public void excluir(Usuario usuario) throws SQLException {
+		con.setAutoCommit(false);
+		stmt = con.prepareStatement(delete);
+
+		stmt.setLong(1, usuario.getId());
+
+		stmt.executeUpdate();
+		con.commit();
 	}
 }
