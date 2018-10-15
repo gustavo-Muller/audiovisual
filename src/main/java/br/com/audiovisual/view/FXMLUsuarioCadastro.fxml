@@ -73,7 +73,7 @@
 				</AnchorPane>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="798.0">
 					<children>
-						<TableView fx:id="tblUsuarios" layoutX="119.0" onMouseClicked="#selecao" prefHeight="358.0" prefWidth="798.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<TableView fx:id="tblUsuarios" onMouseClicked="#selecao" prefHeight="358.0" prefWidth="798.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<columns>
 								<TableColumn fx:id="clnNome" prefWidth="75.0" text="Nome" />
 								<TableColumn fx:id="clnEmail" prefWidth="75.0" text="E-mail" />

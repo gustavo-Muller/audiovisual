@@ -74,7 +74,7 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	void editar(ActionEvent event) {
-
+		
 	}
 
 	@FXML

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.ListaMarcaController">
+	<children>
+		<Label layoutX="386.0" layoutY="14.0" style="-fx-background-color: gray;" text="                                          Lista de Marcas" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<font>
+				<Font name="Calibri" size="32.0" />
+			</font>
+		</Label>
+		<TableView fx:id="tbMarca" layoutX="7.0" layoutY="100.0" prefHeight="488.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<columns>
+				<TableColumn fx:id="clNome" prefWidth="134.0" text="Nome" />
+				<TableColumn fx:id="clDescricao" minWidth="0.0" prefWidth="665.0" text="Descrição" />
+			</columns>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+			</columnResizePolicy>
+		</TableView>
+		<JFXButton fx:id="btNova" buttonType="RAISED" layoutX="44.0" layoutY="70.0" style="-fx-background-color: gray;" text="Nova" />
+		<JFXButton fx:id="btExluir" buttonType="RAISED" layoutX="711.0" layoutY="70.0" style="-fx-background-color: gray;" text="Excluir" />
+	</children>
+</AnchorPane>
