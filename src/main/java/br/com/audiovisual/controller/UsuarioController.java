@@ -73,8 +73,12 @@ public class UsuarioController implements Initializable {
 	}
 
 	@FXML
-	void editar(ActionEvent event) {
-		
+	void editar(ActionEvent event) throws SQLException {
+		user.setId(usuarioSelecionado.getId());
+		montaObjeto();
+		this.service.editarUsuario(user);
+		AdicioneNaGrid();
+		clear();
 	}
 
 	@FXML
@@ -107,6 +111,7 @@ public class UsuarioController implements Initializable {
 		txtEmail.setText(null);
 		txtNome.setText(null);
 		txtTelefone.setText(null);
+		cbTipoPessoa.setValue(null);
 	}
 
 	private void AdicioneNaGrid() throws SQLException {

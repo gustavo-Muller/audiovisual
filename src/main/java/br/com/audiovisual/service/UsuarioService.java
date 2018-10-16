@@ -35,4 +35,8 @@ public class UsuarioService {
 		this.dao.excluir(usuario);
 	}
 
+	public void editarUsuario(Usuario usuario) throws SQLException {
+		this.dao.editar(usuario);
+	}
+
 }
