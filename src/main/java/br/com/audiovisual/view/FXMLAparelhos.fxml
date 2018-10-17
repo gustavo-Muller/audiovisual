@@ -14,16 +14,17 @@
             <Font name="Calibri" size="32.0" />
          </font>
       </Label>
-      <TableView layoutX="-1.0" layoutY="37.0" prefHeight="292.0" prefWidth="598.0" AnchorPane.rightAnchor="0.0">
+      <JFXButton fx:id="btnAdicionar" buttonType="RAISED" layoutX="14.0" layoutY="348.0" onAction="#adicionar" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Adicionar" AnchorPane.bottomAnchor="12.0" />
+      <JFXButton fx:id="btnEditar" buttonType="RAISED" layoutX="93.0" layoutY="348.0" onAction="#editar" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Editar" />
+      <JFXButton fx:id="btnExcluir" buttonType="RAISED" layoutX="172.0" layoutY="348.0" onAction="#excluir" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Excluir" />
+      <TableView fx:id="tblEquipamentos" layoutX="-1.0" layoutY="37.0" prefHeight="292.0" prefWidth="598.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="136.0" text="Nome" />
-          <TableColumn prefWidth="73.0" text="Código" />
-            <TableColumn prefWidth="84.0" text="Tipo" />
-            <TableColumn prefWidth="95.0" text="Marca" />
-            <TableColumn prefWidth="209.0" text="Descrição" />
+          <TableColumn fx:id="clnNome" prefWidth="136.0" text="Nome" />
+          <TableColumn fx:id="clnCodigo" prefWidth="73.0" text="Código" />
+            <TableColumn fx:id="clnTipo" prefWidth="84.0" text="Tipo" />
+            <TableColumn fx:id="clnMarca" prefWidth="95.0" text="Marca" />
+            <TableColumn fx:id="clnDescricao" prefWidth="209.0" text="Descrição" />
         </columns>
       </TableView>
-      <JFXButton fx:id="btnRemover" buttonType="RAISED" layoutX="14.0" layoutY="348.0" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Remover" AnchorPane.bottomAnchor="12.0" />
-      <JFXButton fx:id="btnFechar" buttonType="RAISED" layoutX="505.0" layoutY="348.0" onAction="#fechar" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Fechar" />
    </children>
 </AnchorPane>

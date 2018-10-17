@@ -1,20 +1,19 @@
 package br.com.audiovisual.controller;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import br.com.audiovisual.model.Equipamento;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.fxml.Initializable;
 
-public class EquipamentoController {
+
+public class EquipamentoController implements Initializable{
 
 	@FXML
 	private JFXTextField txtNome;
@@ -36,7 +35,14 @@ public class EquipamentoController {
 
 	@FXML
 	private JFXButton btnListar;
-
+	
+	public Equipamento equipamento = new Equipamento();
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		txtNome.setText(equipamento.getNome());
+	}
+	
 	@FXML
 	void limpar(ActionEvent event) {
 
@@ -45,16 +51,6 @@ public class EquipamentoController {
 	@FXML
 	void salvar(ActionEvent event) {
 
-	}
-
-	@FXML
-	void listar(ActionEvent event) throws IOException {
-		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelhos.fxml"));
-		Scene scene = new Scene(pane);
-		stage.setScene(scene);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
 	}
 
 }
