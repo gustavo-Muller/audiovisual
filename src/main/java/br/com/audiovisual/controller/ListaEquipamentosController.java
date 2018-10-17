@@ -21,43 +21,43 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class EquipamentosCadastradosController implements Initializable{
+public class ListaEquipamentosController implements Initializable {
 
 	@FXML
 	private JFXButton btnAdicionar;
-	
+
 	@FXML
 	private JFXButton btnEditar;
-	
+
 	@FXML
 	private JFXButton btnExcluir;
-	
+
 	@FXML
 	private TableView<Equipamento> tblEquipamentos;
-	
+
 	@FXML
 	private TableColumn<Equipamento, String> clnNome, clnTipo, clnMarca, clnDescricao;
-	
+
 	@FXML
 	private TableColumn<Equipamento, Integer> clnCodigo;
-	
+
 	List<Equipamento> equipamentos = new ArrayList<>();
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Equipamento equipamento = new Equipamento("projetor", 123, "algo", "marca", "descricao");
 		equipamentos.add(equipamento);
-		
+
 		clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 		clnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
 		clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-		
+
 		tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
 	}
-	
-	@FXML 
+
+	@FXML
 	void adicionar() throws IOException {
 		Stage stage = new Stage();
 		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelhoCadastro.fxml"));
@@ -66,16 +66,14 @@ public class EquipamentosCadastradosController implements Initializable{
 		stage.initStyle(StageStyle.UTILITY);
 		stage.show();
 	}
-	
-	@FXML 
+
+	@FXML
 	void editar() throws IOException {
 
 	}
-	
-	
-	
-	@FXML 
+
+	@FXML
 	void excluir() {
-		
+
 	}
 }
