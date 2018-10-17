@@ -2,16 +2,26 @@ package br.com.audiovisual.model;
 
 public class Marca {
 
+	private Long id;
 	private String nome;
 	private String descricao;
 
-	public Marca(String nome, String descricao) {
+	public Marca(Long id, String nome, String descricao) {
+		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 	}
 
 	public Marca() {
 
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
