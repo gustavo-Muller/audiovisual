@@ -18,7 +18,7 @@
       <JFXTextField fx:id="txtNomeMarca" layoutX="139.0" layoutY="129.0" prefHeight="25.0" prefWidth="194.0" />
       <JFXTextArea fx:id="txaDescricaoMarca" layoutX="141.0" layoutY="169.0" prefHeight="107.0" prefWidth="194.0" />
       <Label layoutX="64.0" layoutY="179.0" text="Descrição" />
-      <JFXButton fx:id="btSalvar" buttonType="RAISED" layoutX="425.0" layoutY="223.0" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: gray;" text="Salvar" />
-      <JFXButton fx:id="btLimpar" buttonType="RAISED" layoutX="425.0" layoutY="264.0" style="-fx-background-color: gray;" text="Limpar" />
+      <JFXButton fx:id="btSalvar" buttonType="RAISED" layoutX="425.0" layoutY="223.0" onAction="#salvar" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: gray;" text="Salvar" />
+      <JFXButton fx:id="btLimpar" buttonType="RAISED" layoutX="425.0" layoutY="264.0" onAction="#limpar" style="-fx-background-color: gray;" text="Limpar" />
    </children>
 </AnchorPane>

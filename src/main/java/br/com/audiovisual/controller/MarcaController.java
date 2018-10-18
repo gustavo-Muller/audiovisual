@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class MarcaController {
@@ -20,5 +21,14 @@ public class MarcaController {
 	@FXML
 	private JFXButton btLimpar;
 
+	@FXML
+	void limpar(ActionEvent event) {
+
+	}
+
+	@FXML
+	void salvar(ActionEvent event) {
+
+	}
 
 }
