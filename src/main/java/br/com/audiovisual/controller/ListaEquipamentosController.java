@@ -41,24 +41,25 @@ public class ListaEquipamentosController implements Initializable {
 
 	@FXML
 	private TableColumn<Equipamento, Integer> clnCodigo;
-	
+
 	private Stage stage;
 
 	List<Equipamento> equipamentos = new ArrayList<>();
 
 	@Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        Equipamento equipamento = new Equipamento("projetor", 123, "algo", new Marca(1L, "marca", "Marca de Teste"), "descricao");
-        equipamentos.add(equipamento);
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		Equipamento equipamento = new Equipamento("projetor", 123, "algo", new Marca(1L, "marca", "Marca de Teste"),
+				"descricao");
+		equipamentos.add(equipamento);
 
-        clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-        clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        clnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-        clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		clnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+		clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 
-        tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
-    }
+		tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
+	}
 
 	@FXML
 	void adicionar() throws IOException {
@@ -71,19 +72,19 @@ public class ListaEquipamentosController implements Initializable {
 	}
 
 	@FXML
-    void editar() throws IOException {
-        this.stage = new Stage();
-        AnchorPane root;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FXMLAparelhoCadastro.fxml"));
-        root = fxmlLoader.load();
-        EquipamentoController equipamentoController = fxmlLoader.getController();
-        stage.setTitle("Edição de Equipamento");
-        stage.setScene(new Scene(root));
-        stage.initStyle(StageStyle.UTILITY);
-        Equipamento equipamento = this.tblEquipamentos.getSelectionModel().getSelectedItem();
-        equipamentoController.monteObjetoNaTela(equipamento);
-        stage.show();
-    }
+	void editar() throws IOException {
+		this.stage = new Stage();
+		AnchorPane root;
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FXMLAparelhoCadastro.fxml"));
+		root = fxmlLoader.load();
+		EquipamentoController equipamentoController = fxmlLoader.getController();
+		stage.setTitle("Edição de Equipamento");
+		stage.setScene(new Scene(root));
+		stage.initStyle(StageStyle.UTILITY);
+		Equipamento equipamento = this.tblEquipamentos.getSelectionModel().getSelectedItem();
+		equipamentoController.monteObjetoNaTela(equipamento);
+		stage.show();
+	}
 
 	@FXML
 	void excluir() {
