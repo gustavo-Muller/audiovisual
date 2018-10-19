@@ -16,48 +16,47 @@ import javafx.fxml.Initializable;
 
 public class EquipamentoController implements Initializable {
 
-	@FXML
-	private JFXTextField txtNome;
+    @FXML
+    private JFXTextField txtNome;
 
-	@FXML
-	private JFXTextField txtCodigo;
+    @FXML
+    private JFXTextField txtCodigo;
 
-	@FXML
-	private JFXTextArea txtDescricao;
+    @FXML
+    private JFXTextArea txtDescricao;
 
-	@FXML
-	private JFXComboBox<?> cbTipo;
+    @FXML
+    private JFXComboBox<?> cbTipo;
 
-	@FXML
-	private JFXComboBox<Marca> cbMarca;
+    @FXML
+    private JFXComboBox<Marca> cbMarca;
 
-	@FXML
-	private JFXButton btnSalvar;
+    @FXML
+    private JFXButton btnSalvar;
 
-	@FXML
-	private JFXButton btnLimpar;
+    @FXML
+    private JFXButton btnLimpar;
 
-	public Equipamento equipamento = new Equipamento();
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		txtNome.setText(equipamento.getNome());
-	}
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //Altera alguma coisa
+    }
 
-	@FXML
-	void limpar(ActionEvent event) {
+    @FXML
+    void limpar(ActionEvent event) {
 
-	}
+    }
 
-	@FXML
-	void salvar(ActionEvent event) {
+    @FXML
+    void salvar(ActionEvent event) {
 
-	}
+    }
 
-	public void montaObjeto() {
-		equipamento.setNome(txtNome.getText());
-		equipamento.setDescricao(txtDescricao.getText());
-		equipamento.setMarca(cbMarca.getValue());
-	}
+    public void monteObjetoNaTela(Equipamento equipamento) {
+        txtCodigo.setText(String.valueOf(equipamento.getCodigo()));
+        txtNome.setText(equipamento.getNome());
+        txtDescricao.setText(equipamento.getDescricao());
+    }
 
 }
