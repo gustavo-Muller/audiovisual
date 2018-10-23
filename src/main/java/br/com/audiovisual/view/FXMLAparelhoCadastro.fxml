@@ -4,7 +4,10 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,40 +15,62 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="377.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.EquipamentoController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.EquipamentoController">
 	<children>
-		<GridPane layoutX="5.0" layoutY="57.0" prefHeight="242.0" prefWidth="559.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="39.0">
-			<columnConstraints>
-				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="92.0" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="427.0" />
-			</columnConstraints>
-			<rowConstraints>
-				<RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
-			</rowConstraints>
-			<children>
-				<Label text="Nome*" />
-				<Label text="Código*" GridPane.rowIndex="1" />
-				<Label text="Tipo*" GridPane.rowIndex="2" />
-				<Label text="Marca" GridPane.rowIndex="3" />
-				<Label text="Descrição*" GridPane.rowIndex="4" />
-				<JFXTextField fx:id="txtNome" prefHeight="25.0" prefWidth="446.0" GridPane.columnIndex="1" />
-				<JFXTextField fx:id="txtCodigo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-				<JFXTextArea fx:id="txtDescricao" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <JFXComboBox fx:id="cbTipo" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <JFXComboBox fx:id="cbMarca" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-			</children>
-		</GridPane>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="178.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+      		<GridPane layoutY="43.0" prefHeight="149.0" prefWidth="746.0" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="43.0">
+      			<columnConstraints>
+      				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="84.0" />
+      				<ColumnConstraints hgrow="SOMETIMES" maxWidth="648.0" minWidth="10.0" prefWidth="506.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="648.0" minWidth="10.0" prefWidth="157.0" />
+      			</columnConstraints>
+      			<rowConstraints>
+      				<RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+      				<RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+      				<RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      				<RowConstraints maxHeight="108.0" minHeight="9.0" prefHeight="26.0" vgrow="SOMETIMES" />
+      				<RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+      			</rowConstraints>
+      			<children>
+      				<Label text="Nome*">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+      				<Label text="Código*" GridPane.rowIndex="1" />
+      				<Label text="Tipo*" GridPane.rowIndex="2" />
+      				<Label text="Marca" GridPane.rowIndex="3" />
+      				<Label text="Descrição*" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+      				<JFXTextField fx:id="txtNome" prefHeight="25.0" prefWidth="468.0" GridPane.columnIndex="1" />
+      				<JFXTextField fx:id="txtCodigo" prefHeight="25.0" prefWidth="466.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      				<JFXTextArea fx:id="txtDescricao" prefColumnCount="60" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <JFXComboBox fx:id="cbTipo" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXComboBox fx:id="cbMarca" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXButton fx:id="btnSalvar" buttonType="RAISED" onAction="#salvar" prefHeight="169.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Salvar" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <JFXButton fx:id="btnExcluir" buttonType="RAISED" onAction="#excluir" prefHeight="92.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Excluir" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      			</children>
+      		</GridPane>
+         </children>
+      </AnchorPane>
       <HBox layoutX="541.0" layoutY="322.0" prefHeight="17.0" prefWidth="57.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="598.0" style="-fx-background-color: gray;" text="Cadastro de Equipamento" textAlignment="JUSTIFY">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="800.0" style="-fx-background-color: gray;" text="Cadastro de Equipamento" textAlignment="JUSTIFY">
          <font>
             <Font name="Calibri" size="32.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnSalvar" buttonType="RAISED" layoutX="103.0" layoutY="321.0" onAction="#salvar" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Confirmar" />
-      <JFXButton fx:id="btnLimpar" buttonType="RAISED" layoutX="182.0" layoutY="321.0" onAction="#limpar" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: lightgray;" text="Cancelar" />
+      <TableView fx:id="tblEquipamentos" layoutX="39.0" layoutY="228.0" prefHeight="392.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="clnNome" prefWidth="167.0" text="Nome" />
+            <TableColumn fx:id="clnCodigo" prefWidth="110.0" text="Código" />
+            <TableColumn fx:id="clnTipo" prefWidth="100.0" text="Tipo" />
+            <TableColumn fx:id="clnMarca" prefWidth="113.0" text="Marca" />
+            <TableColumn fx:id="clnDescricao" prefWidth="275.0" text="Descrição" />
+         </columns>
+      </TableView>
 	</children>
 </AnchorPane>

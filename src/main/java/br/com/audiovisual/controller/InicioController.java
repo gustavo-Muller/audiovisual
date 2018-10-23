@@ -49,7 +49,7 @@ public class InicioController {
 	@FXML
 	void irParaCadastroEquipamento() throws IOException {
 		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelhos.fxml"));
+		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelhoCadastro.fxml"));
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.UTILITY);
