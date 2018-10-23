@@ -35,7 +35,7 @@ public class EquipamentoController implements Initializable {
     private JFXButton btnSalvar;
 
     @FXML
-    private JFXButton btnLimpar;
+    private JFXButton btnExcluir;
 
 
     @Override
@@ -44,7 +44,7 @@ public class EquipamentoController implements Initializable {
     }
 
     @FXML
-    void limpar(ActionEvent event) {
+    void excluir(ActionEvent event) {
 
     }
 
