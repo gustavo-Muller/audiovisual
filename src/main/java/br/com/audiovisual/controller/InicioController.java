@@ -1,17 +1,20 @@
 package br.com.audiovisual.controller;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class InicioController {
+
+	@FXML
+	private AnchorPane acPanePrincipal;
 
 	@FXML
 	private MenuBar mbMenu;
@@ -24,46 +27,48 @@ public class InicioController {
 
 	@FXML
 	private MenuItem miEquipamento;
-	
+
 	@FXML
 	private MenuItem miLEquipamento;
 
+	Stage stage = new Stage();
+
 	public void chamarTeste() throws IOException {
-		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLStart.fxml"));
-		Scene scene = new Scene(pane);
-		stage.setScene(scene);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+
+		URL arquivoFxml;
+		arquivoFxml = getClass().getResource("../view/FXMLStart.fxml");
+		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
+		acPanePrincipal.getChildren().clear();
+		acPanePrincipal.getChildren().add(fxmlParent);
 	}
 
 	public void irParaCadastroUsuario() throws IOException {
-		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLUsuarioCadastro.fxml"));
-		Scene scene = new Scene(pane);
-		stage.setScene(scene);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+
+		URL arquivoFxml;
+		arquivoFxml = getClass().getResource("../view/FXMLUsuarioCadastro.fxml");
+		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
+		acPanePrincipal.getChildren().clear();
+		acPanePrincipal.getChildren().add(fxmlParent);
 	}
 
 	@FXML
 	void irParaCadastroEquipamento() throws IOException {
-		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLAparelhoCadastro.fxml"));
-		Scene scene = new Scene(pane);
-		stage.setScene(scene);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+
+		URL arquivoFxml;
+		arquivoFxml = getClass().getResource("../view/FXMLAparelhoCadastro.fxml");
+		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
+		acPanePrincipal.getChildren().clear();
+		acPanePrincipal.getChildren().add(fxmlParent);
 	}
-	
+
 	@FXML
 	void irParaLocacaoDeEquipamento() throws IOException {
-		Stage stage = new Stage();
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/FXMLLocacao.fxml"));
-		Scene scene = new Scene(pane);
-		stage.setScene(scene);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+
+		URL arquivoFxml;
+		arquivoFxml = getClass().getResource("../view/FXMLLocacao.fxml");
+		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
+		acPanePrincipal.getChildren().clear();
+		acPanePrincipal.getChildren().add(fxmlParent);
 	}
 
 }

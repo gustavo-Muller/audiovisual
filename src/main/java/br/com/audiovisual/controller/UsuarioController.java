@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
+import br.com.audiovisual.Utils.Utils;
 import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
 import br.com.audiovisual.service.UsuarioService;
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -83,7 +85,8 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	void excluir() throws SQLException {
-		selecao();
+		montaOnjetoDaTabelaNosCampos();
+		Utils.showMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
 		this.service.ecluirUsuario(usuarioSelecionado);
 		AdicioneNaGrid();
 		clear();
@@ -99,6 +102,9 @@ public class UsuarioController implements Initializable {
 
 	public void selecao() {
 		usuarioSelecionado = this.tblUsuarios.getSelectionModel().getSelectedItem();
+	}
+	
+	public void montaOnjetoDaTabelaNosCampos() {
 		this.txtNome.setText(usuarioSelecionado.getNome());
 		this.txtEmail.setText(usuarioSelecionado.getEmail());
 		this.txtCelular.setText(usuarioSelecionado.getCelular());
