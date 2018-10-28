@@ -54,6 +54,9 @@ public class UsuarioController implements Initializable {
 	private GridPane grdCadastroUsuario;
 
 	@FXML
+	private JFXButton btCancelar;
+
+	@FXML
 	private TableColumn<Usuario, String> clnNome, clnEmail, clnCelular, clnTelefoneFixo, clnTipo;
 
 	@FXML
@@ -63,6 +66,15 @@ public class UsuarioController implements Initializable {
 	List<Usuario> usuarios = new ArrayList<>();
 	private Usuario user = new Usuario();
 	private Usuario usuarioSelecionado;
+
+	@FXML
+	void cancelar(ActionEvent event) {
+		clear();
+		usuarioSelecionado = new Usuario();
+		btEditar.setDisable(false);
+		btExcluir.setDisable(false);
+		btCancelar.setVisible(false);
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -79,8 +91,10 @@ public class UsuarioController implements Initializable {
 		user.setId(usuarioSelecionado.getId());
 		montaObjeto();
 		montaOnjetoDaTabelaNosCampos();
+		btCancelar.setVisible(true);
 		if (usuarioSelecionado.getId() != null) {
 			btEditar.setDisable(true);
+			btExcluir.setDisable(true);
 		}
 	}
 
@@ -99,6 +113,7 @@ public class UsuarioController implements Initializable {
 		service.salva(user);
 		AdicioneNaGrid();
 		btEditar.setDisable(false);
+		btExcluir.setDisable(false);
 		clear();
 		usuarioSelecionado = new Usuario();
 	}
