@@ -35,13 +35,10 @@ public class MarcaDao {
 		while(res.next()) {
 			Marca m = new Marca();
 			m.setId(res.getLong("id"));
-			m.setNome(res.getString("nome"));
 			m.setDescricao(res.getString("descricao"));
 			list.add(m);
 		}
 		
-		stmt.executeUpdate();
-		con.commit();
 		return list;
 	}
 
