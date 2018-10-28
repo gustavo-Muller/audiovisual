@@ -71,6 +71,7 @@ public class UsuarioController implements Initializable {
 	void cancelar(ActionEvent event) {
 		clear();
 		usuarioSelecionado = new Usuario();
+		user = new Usuario();
 		btEditar.setDisable(false);
 		btExcluir.setDisable(false);
 		btCancelar.setVisible(false);
@@ -91,8 +92,9 @@ public class UsuarioController implements Initializable {
 		user.setId(usuarioSelecionado.getId());
 		montaObjeto();
 		montaOnjetoDaTabelaNosCampos();
-		btCancelar.setVisible(true);
+
 		if (usuarioSelecionado.getId() != null) {
+			btCancelar.setVisible(true);
 			btEditar.setDisable(true);
 			btExcluir.setDisable(true);
 		}
@@ -103,6 +105,7 @@ public class UsuarioController implements Initializable {
 		montaOnjetoDaTabelaNosCampos();
 		Utils.showMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
 		this.service.ecluirUsuario(usuarioSelecionado);
+		usuarioSelecionado = new Usuario();
 		AdicioneNaGrid();
 		clear();
 	}
@@ -116,6 +119,7 @@ public class UsuarioController implements Initializable {
 		btExcluir.setDisable(false);
 		clear();
 		usuarioSelecionado = new Usuario();
+		user = new Usuario();
 	}
 
 	public void selecao() {

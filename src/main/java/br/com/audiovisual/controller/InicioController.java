@@ -31,7 +31,19 @@ public class InicioController {
 	@FXML
 	private MenuItem miLEquipamento;
 
+	@FXML
+	private MenuItem menuItemInicio;
+
 	Stage stage = new Stage();
+	
+	public void irParaInicio() throws IOException {
+
+		URL arquivoFxml;
+		arquivoFxml = getClass().getResource("../view/FXMLInicio.fxml"); 
+		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
+		acPanePrincipal.getChildren().clear();
+		acPanePrincipal.getChildren().add(fxmlParent);
+	}
 
 	public void chamarTeste() throws IOException {
 
