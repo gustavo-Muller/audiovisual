@@ -21,14 +21,18 @@ public class UsuarioService {
 
 		return result;
 	}
-	
+
 	public List<Usuario> listar() throws SQLException {
 		List<Usuario> list = dao.listarUsuario();
 		return list;
 	}
-	
+
 	public void salva(Usuario u) throws SQLException {
-		dao.salvar(u);
+		if (u.getId() != null && u.getId() != 0) {
+			this.editarUsuario(u);
+		} else {
+			dao.salvar(u);
+		}
 	}
 
 	public void ecluirUsuario(Usuario usuario) throws SQLException {

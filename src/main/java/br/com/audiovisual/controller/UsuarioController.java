@@ -78,9 +78,10 @@ public class UsuarioController implements Initializable {
 	void editar(ActionEvent event) throws SQLException {
 		user.setId(usuarioSelecionado.getId());
 		montaObjeto();
-		this.service.editarUsuario(user);
-		AdicioneNaGrid();
-		clear();
+		montaOnjetoDaTabelaNosCampos();
+		if (usuarioSelecionado.getId() != null) {
+			btEditar.setDisable(true);
+		}
 	}
 
 	@FXML
@@ -97,13 +98,16 @@ public class UsuarioController implements Initializable {
 		montaObjeto();
 		service.salva(user);
 		AdicioneNaGrid();
+		btEditar.setDisable(false);
 		clear();
+		usuarioSelecionado = new Usuario();
 	}
 
 	public void selecao() {
 		usuarioSelecionado = this.tblUsuarios.getSelectionModel().getSelectedItem();
+
 	}
-	
+
 	public void montaOnjetoDaTabelaNosCampos() {
 		this.txtNome.setText(usuarioSelecionado.getNome());
 		this.txtEmail.setText(usuarioSelecionado.getEmail());
