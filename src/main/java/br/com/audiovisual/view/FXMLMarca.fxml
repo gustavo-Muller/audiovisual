@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.MarcaController">
+<AnchorPane prefHeight="160.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.MarcaController">
    <children>
-      <Label layoutX="210.0" layoutY="14.0" prefHeight="27.0" prefWidth="500.0" style="-fx-background-color: gray;" text="                Cadastro de Marcas" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label prefHeight="27.0" prefWidth="500.0" style="-fx-background-color: gray;" text="                Cadastro de Marcas" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="Calibri" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="64.0" layoutY="133.0" text="Nome*" />
-      <JFXTextField fx:id="txtNomeMarca" layoutX="139.0" layoutY="129.0" prefHeight="25.0" prefWidth="194.0" />
-      <JFXTextArea fx:id="txaDescricaoMarca" layoutX="141.0" layoutY="169.0" prefHeight="107.0" prefWidth="194.0" />
-      <Label layoutX="64.0" layoutY="179.0" text="Descrição" />
-      <JFXButton fx:id="btSalvar" buttonType="RAISED" layoutX="425.0" layoutY="223.0" onAction="#salvar" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: gray;" text="Salvar" />
-      <JFXButton fx:id="btLimpar" buttonType="RAISED" layoutX="425.0" layoutY="264.0" onAction="#limpar" style="-fx-background-color: gray;" text="Limpar" />
+      <Label layoutX="55.0" layoutY="70.0" text="Nome*" />
+      <JFXTextField fx:id="txtNomeMarca" layoutX="130.0" layoutY="66.0" prefHeight="25.0" prefWidth="194.0" />
+      <JFXTextArea fx:id="txaDescricaoMarca" layoutX="132.0" layoutY="106.0" prefHeight="37.0" prefWidth="194.0" />
+      <Label layoutX="55.0" layoutY="116.0" text="Descrição" />
+      <JFXButton fx:id="btSalvar" buttonType="RAISED" layoutX="376.0" layoutY="66.0" onAction="#salvar" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: gray;" text="Salvar" />
+      <JFXButton fx:id="btLimpar" buttonType="RAISED" layoutX="376.0" layoutY="121.0" onAction="#limpar" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: gray;" text="Limpar" />
    </children>
 </AnchorPane>

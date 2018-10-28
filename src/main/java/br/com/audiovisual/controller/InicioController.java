@@ -55,7 +55,7 @@ public class InicioController {
 	void irParaCadastroEquipamento() throws IOException {
 
 		URL arquivoFxml;
-		arquivoFxml = getClass().getResource("../view/FXMLAparelhoCadastro.fxml");
+		arquivoFxml = getClass().getResource("../view/FXMLEquipamentoCadastro.fxml");
 		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
 		acPanePrincipal.getChildren().clear();
 		acPanePrincipal.getChildren().add(fxmlParent);

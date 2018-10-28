@@ -1,16 +1,16 @@
 package br.com.audiovisual.model;
 
 public class Equipamento {
-
-	private String nome;
+	
 	private int codigo;
-	private String tipo;
+	private String nome;
+	private Tipo tipo;
 	private Marca marca;
 	private String descricao;
 
-	public Equipamento(String nome, int codigo, String tipo, Marca marca, String descricao) {
-		this.nome = nome;
+	public Equipamento(int codigo, String nome, Tipo tipo, Marca marca, String descricao) {
 		this.codigo = codigo;
+		this.nome = nome;
 		this.tipo = tipo;
 		this.marca = marca;
 		this.descricao = descricao;
@@ -36,11 +36,11 @@ public class Equipamento {
 		this.codigo = codigo;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 

@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 
 import br.com.audiovisual.model.Equipamento;
 import br.com.audiovisual.model.Marca;
+import br.com.audiovisual.model.Tipo;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,17 +49,17 @@ public class ListaEquipamentosController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Equipamento equipamento = new Equipamento("projetor", 123, "algo", new Marca(1L, "marca", "Marca de Teste"),
-				"descricao");
-		equipamentos.add(equipamento);
-
-		clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-		clnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-		clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-
-		tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
+//		Equipamento equipamento = new Equipamento(123, "projetor", new Tipo(1L, "tipo", "Tipo de Teste"), new Marca(1L, "marca", "Marca de Teste"),
+//				"descricao");
+//		equipamentos.add(equipamento);
+//
+//		clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+//		clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+//		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+//		clnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+//		clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+//
+//		tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
 	}
 
 	@FXML
@@ -82,7 +83,7 @@ public class ListaEquipamentosController implements Initializable {
 		stage.setScene(new Scene(root));
 		stage.initStyle(StageStyle.UTILITY);
 		Equipamento equipamento = this.tblEquipamentos.getSelectionModel().getSelectedItem();
-		equipamentoController.monteObjetoNaTela(equipamento);
+	//	equipamentoController.monteObjetoNaTela(equipamento);
 		stage.show();
 	}
 
