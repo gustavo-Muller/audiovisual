@@ -20,6 +20,7 @@ import br.com.audiovisual.service.TipoService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -30,10 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class EquipamentoController implements Initializable {
 
     @FXML
-    private JFXTextField txtNome, txtCodigo;
-
-    @FXML
-    private JFXTextArea txtDescricao;
+    private JFXTextField txtNome, txtCodigo, txtDescricao;
 
     @FXML
     private JFXComboBox<Tipo> cbTipo;
@@ -76,7 +74,6 @@ public class EquipamentoController implements Initializable {
 			carreguetipos();
 			adicioneNaGrid();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -92,25 +89,38 @@ public class EquipamentoController implements Initializable {
     }
 
     @FXML
-    void excluir(ActionEvent event) {
+    public void excluir(ActionEvent event) {
 
     }
 
     @FXML
-    void salvar(ActionEvent event) throws SQLException {
-    	monteObjeto();
+    public void salvar(ActionEvent event) throws SQLException {
+    	monteEquipamento();
     	serviceEquipamento.salvar(equipamento);
     	adicioneNaGrid();
-    	
+    	btnEditar.setDisable(false);
+    	btnExcluir.setDisable(false);
+    	clear();
     	
     }
     
     @FXML
-    void editar(ActionEvent event) {
-    	
-    }
+    public void editar(ActionEvent event) throws SQLException {
+    	exibaEquipamentoNosCampos();
 
-    public void monteObjeto() {
+    }
+    
+    private void exibaEquipamentoNosCampos() {
+    	this.equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
+    	this.txtNome.setText(equipamento.getNome());
+    	this.txtCodigo.setText(String.valueOf(equipamento.getCodigo()));
+    	this.cbTipo.getSelectionModel().select(equipamento.getTipo());
+    	this.cbMarca.getSelectionModel().select(equipamento.getMarca());
+    	this.txtDescricao.setText(equipamento.getDescricao());
+    }
+    
+
+    private void monteEquipamento() {
     	equipamento.setCodigo(Integer.parseInt(txtCodigo.getText()));
     	equipamento.setNome(txtNome.getText());
     	equipamento.setTipo(cbTipo.getSelectionModel().getSelectedItem());
@@ -118,7 +128,7 @@ public class EquipamentoController implements Initializable {
     	equipamento.setDescricao(txtDescricao.getText());
     }
     
-    public void adicioneNaGrid() throws SQLException {
+    private void adicioneNaGrid() throws SQLException {
     	equipamentos = serviceEquipamento.listar();
     	clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
     	clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -127,6 +137,15 @@ public class EquipamentoController implements Initializable {
     	clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 
     	tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
+    }
+    
+    private void clear() {
+    	txtNome.clear();;
+    	txtCodigo.clear();
+    	cbTipo.setValue(null);
+    	cbMarca.setValue(null);
+    	txtDescricao.clear();
+    	equipamento = new Equipamento();
     }
 
 }

@@ -68,8 +68,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 	@Override
 	public List<Equipamento> consultarTodos() throws SQLException {
 		List<Equipamento> equipamentos = new ArrayList<>();
-		Tipo tipo = new Tipo();
-		Marca marca = new Marca();
+		
 		
 		ResultSet res = null;
 		
@@ -78,19 +77,21 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 		
 		while(res.next()) {
 			Equipamento equipamento = new Equipamento();
-			equipamento.setCodigo(res.getInt("Equipamento_id"));
+			Tipo tipo = new Tipo();
+			Marca marca = new Marca();
+			
 			equipamento.setNome(res.getString("nome"));
-			equipamento.setDescricao(res.getString("descricao"));
+			equipamento.setCodigo(res.getInt("Equipamento_id"));
 			
 			tipo.setId(res.getLong("id_tipo"));
-			tipo.setDescricao("Tipo_Descricao");
+			tipo.setDescricao(res.getString("Tipo_Descricao"));
 			
-			marca.setId(res.getLong("Id_marca"));
-			marca.setDescricao("Marca_Descricao");
+			marca.setId(res.getLong("id_marca"));
+			marca.setDescricao(res.getString("Marca_Descricao"));
 			
 			equipamento.setTipo(tipo);
 			equipamento.setMarca(marca);
-			
+			equipamento.setDescricao(res.getString("descricao"));
 			equipamentos.add(equipamento);
 		}
 		

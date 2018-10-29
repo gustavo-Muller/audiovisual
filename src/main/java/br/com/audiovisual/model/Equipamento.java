@@ -8,9 +8,9 @@ public class Equipamento {
 	private Marca marca;
 	private String descricao;
 
-	public Equipamento(int codigo, String nome, Tipo tipo, Marca marca, String descricao) {
-		this.codigo = codigo;
+	public Equipamento(String nome, int codigo, Tipo tipo, Marca marca, String descricao) {
 		this.nome = nome;
+		this.codigo = codigo;
 		this.tipo = tipo;
 		this.marca = marca;
 		this.descricao = descricao;
