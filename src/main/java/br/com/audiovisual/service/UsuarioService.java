@@ -3,6 +3,7 @@ package br.com.audiovisual.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import br.com.audiovisual.Exeption.DadosInvalidosExeption;
 import br.com.audiovisual.dao.UsuarioDao;
 import br.com.audiovisual.model.Usuario;
 
@@ -10,7 +11,7 @@ public class UsuarioService {
 
 	UsuarioDao dao = new UsuarioDao();
 
-	public boolean jaPossue(Usuario user) throws SQLException {
+	public boolean jaPossue(Usuario user) throws SQLException, DadosInvalidosExeption {
 		boolean result;
 		if (dao.listarUsuario().contains(user)) {
 			result = false;

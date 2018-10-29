@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.audiovisual.ConnectionFactory.ConnectionFactory;
+import br.com.audiovisual.Exeption.DadosInvalidosExeption;
 import br.com.audiovisual.model.Usuario;
 
 public class UsuarioDao {
@@ -27,7 +28,7 @@ public class UsuarioDao {
 	private final String listar = "SELECT * FROM usuario";
 	private final String delete = "DELETE FROM usuario WHERE id = ?";
 	private final String editar = "UPDATE usuario SET nome = ?, email = ?, telefone = ?, celular = ?, tipo = ? WHERE id = ?";
-	
+
 	public void salvar(Usuario pessoa) throws SQLException {
 		con.setAutoCommit(false);
 		stmt = con.prepareStatement(salvar);
@@ -46,7 +47,7 @@ public class UsuarioDao {
 	public void editar(Usuario usuario) throws SQLException {
 		con.setAutoCommit(false);
 		stmt = con.prepareStatement(editar);
-		
+
 		stmt.setString(1, usuario.getNome());
 		stmt.setString(2, usuario.getEmail());
 		stmt.setString(3, usuario.getTelefone());
@@ -54,7 +55,7 @@ public class UsuarioDao {
 		int tipo = usuario.getTipoUsuario().getId().intValue();
 		stmt.setInt(5, tipo);
 		stmt.setLong(6, usuario.getId());
-		
+
 		stmt.executeUpdate();
 		con.commit();
 	}

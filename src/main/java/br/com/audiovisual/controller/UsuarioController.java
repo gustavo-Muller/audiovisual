@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
+import br.com.audiovisual.Exeption.DadosInvalidosExeption;
 import br.com.audiovisual.Utils.Utils;
 import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
@@ -111,7 +112,8 @@ public class UsuarioController implements Initializable {
 	}
 
 	@FXML
-	void salvar(ActionEvent event) throws SQLException {
+	void salvar(ActionEvent event) throws SQLException, DadosInvalidosExeption {
+		testeException();
 		montaObjeto();
 		service.salva(user);
 		AdicioneNaGrid();
@@ -169,6 +171,14 @@ public class UsuarioController implements Initializable {
 
 	public Usuario getUsuarioSelecionado() {
 		return usuarioSelecionado;
+	}
+
+	private void testeException() throws DadosInvalidosExeption {
+		if (txtNome.getText() == null || txtNome.getText().isEmpty() || txtEmail.getText() == null
+				|| txtEmail.getText().isEmpty() || cbTipoPessoa.getSelectionModel().isEmpty()
+				|| cbTipoPessoa.getSelectionModel() == null) {
+			throw new DadosInvalidosExeption();
+		}
 	}
 
 }

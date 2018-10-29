@@ -13,8 +13,17 @@ public class Utils {
 		}
 		return;
 	}
+	
+	public static void showMessageError(String content) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error!");
+		alert.setHeaderText(null);
+		alert.setContentText(content);
 
-	private static void showErrorMessage(AlertType alertType, String content) {
+		alert.showAndWait();
+	}
+
+	public static void showErrorMessage(AlertType alertType, String content) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error!");
 		alertBase(alert, content);
