@@ -1,5 +1,7 @@
 USE mysql;
 
+DROP DATABASE audiovisual;
+
 CREATE DATABASE audiovisual;
 
 USE audiovisual;

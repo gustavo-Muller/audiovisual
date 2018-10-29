@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.audiovisual.ConnectionFactory.ConnectionFactory;
-import br.com.audiovisual.Exeption.DadosInvalidosExeption;
 import br.com.audiovisual.model.Usuario;
 
 public class UsuarioDao {
