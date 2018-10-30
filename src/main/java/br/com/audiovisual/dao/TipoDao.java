@@ -39,7 +39,7 @@ public class TipoDao implements InterfaceDAO<Tipo>{
 	}
 
 	@Override
-	public void exvluir(int id) {
+	public void excluir(int id) {
 		// TODO Auto-generated method stub
 		
 	}

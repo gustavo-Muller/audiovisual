@@ -2,6 +2,7 @@ package br.com.audiovisual.Utils;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class Utils {
 
@@ -26,10 +27,13 @@ public class Utils {
 		alertBase(alert, content);
 	}
 
-	private static void showConfirmationMessage(AlertType alertType, String content) {
+	public static boolean showConfirmationMessage(AlertType alertType, String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Confirmado!");
 		alertBase(alert, content);
+		ButtonType resultado = alert.resultProperty().getValue();
+		if(resultado != ButtonType.OK) return false;
+		return true;
 	}
 
 	public static void showMessage(AlertType alertType, String content) {
