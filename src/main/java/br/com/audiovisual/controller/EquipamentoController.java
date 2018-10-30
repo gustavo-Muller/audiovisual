@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import br.com.audiovisual.Utils.Utils;
 import br.com.audiovisual.model.Equipamento;
 import br.com.audiovisual.model.Marca;
 import br.com.audiovisual.model.Tipo;
@@ -26,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EquipamentoController implements Initializable {
@@ -89,8 +91,13 @@ public class EquipamentoController implements Initializable {
     }
 
     @FXML
-    public void excluir(ActionEvent event) {
-
+    public void excluir(ActionEvent event) throws SQLException {
+    	boolean confirmou = Utils.showConfirmationMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
+    	if(!confirmou) return; 
+    	
+    	equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
+    	serviceEquipamento.excluir(equipamento.getCodigo());
+    	adicioneNaGrid();
     }
 
     @FXML
@@ -98,20 +105,25 @@ public class EquipamentoController implements Initializable {
     	monteEquipamento();
     	serviceEquipamento.salvar(equipamento);
     	adicioneNaGrid();
-    	btnEditar.setDisable(false);
-    	btnExcluir.setDisable(false);
     	clear();
-    	
     }
     
     @FXML
     public void editar(ActionEvent event) throws SQLException {
     	exibaEquipamentoNosCampos();
-
+    	
+    	btnEditar.setDisable(true);
+    	
+    	if(btnSalvar.isHover()) {
+    		monteEquipamento();
+    		serviceEquipamento.editar(equipamento);
+    	}
+    	
     }
     
     private void exibaEquipamentoNosCampos() {
     	this.equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
+    	
     	this.txtNome.setText(equipamento.getNome());
     	this.txtCodigo.setText(String.valueOf(equipamento.getCodigo()));
     	this.cbTipo.getSelectionModel().select(equipamento.getTipo());

@@ -19,4 +19,16 @@ public class EquipamentoService {
 		return equipamentos;
 	}
 
+	public void excluir(int codigo) throws SQLException {
+		if(codigo == 0) return;
+		else {
+			dao.excluir(codigo);
+		}
+		
+	}
+
+	public void editar(Equipamento equipamento) throws SQLException {
+		dao.atualizar(equipamento);
+	}
+
 }
