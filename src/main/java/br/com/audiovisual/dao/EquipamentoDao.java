@@ -58,6 +58,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 		stmt.setString(2, obj.getDescricao());
 		stmt.setLong(3, obj.getMarca().getId());
 		stmt.setLong(4, obj.getTipo().getId());
+		stmt.setInt(5, obj.getCodigo());
 		
 		stmt.executeUpdate();
 		con.commit();

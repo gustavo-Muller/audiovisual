@@ -32,132 +32,155 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EquipamentoController implements Initializable {
 
-    @FXML
-    private JFXTextField txtNome, txtCodigo, txtDescricao;
+	@FXML
+	private JFXTextField txtNome, txtCodigo, txtDescricao;
 
-    @FXML
-    private JFXComboBox<Tipo> cbTipo;
+	@FXML
+	private JFXComboBox<Tipo> cbTipo;
 
-    @FXML
-    private JFXComboBox<Marca> cbMarca;
+	@FXML
+	private JFXComboBox<Marca> cbMarca;
 
-    @FXML
-    private JFXButton btnSalvar, btnExcluir, btnEditar;
-    
-    @FXML
-    private TableColumn<Equipamento, String> clnNome;
+	@FXML
+	private JFXButton btnSalvar, btnExcluir, btnEditar;
 
-    @FXML
-    private TableColumn<Equipamento, Integer> clnCodigo;
+	@FXML
+	private TableColumn<Equipamento, String> clnNome;
 
-    @FXML
-    private TableColumn<Equipamento, String> clnTipo;
+	@FXML
+	private TableColumn<Equipamento, Integer> clnCodigo;
 
-    @FXML
-    private TableColumn<Equipamento, String> clnMarca;
+	@FXML
+	private TableColumn<Equipamento, String> clnTipo;
 
-    @FXML
-    private TableColumn<Equipamento, String> clnDescricao;
-    
-    @FXML
-    private TableView<Equipamento> tblEquipamentos;
-   
-    private EquipamentoService serviceEquipamento = new EquipamentoService();
-    private MarcaService serviceMarca = new MarcaService();
-    private TipoService serviceTipo = new TipoService();
-    
-    private Equipamento equipamento = new Equipamento();
-    private List<Equipamento> equipamentos = new ArrayList<>();
+	@FXML
+	private TableColumn<Equipamento, String> clnMarca;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
+	@FXML
+	private TableColumn<Equipamento, String> clnDescricao;
+
+	@FXML
+	private TableView<Equipamento> tblEquipamentos;
+
+	private boolean ehEdicao;
+	private EventHandler<ActionEvent> actionExcluir;
+
+	private EquipamentoService serviceEquipamento = new EquipamentoService();
+	private MarcaService serviceMarca = new MarcaService();
+	private TipoService serviceTipo = new TipoService();
+
+	private Equipamento equipamento = new Equipamento();
+	private List<Equipamento> equipamentos = new ArrayList<>();
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		try {
 			carregueMarcas();
 			carreguetipos();
 			adicioneNaGrid();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-    }
-    
-    private void carregueMarcas() throws SQLException {
-    	List<Marca> marcas = serviceMarca.listar();
-    	cbMarca.getItems().addAll(marcas);
-    }
-    
-    private void carreguetipos() throws SQLException {
-    	List<Tipo> tipos = serviceTipo.listar();
-    	cbTipo.getItems().addAll(tipos);
-    }
+	}
 
-    @FXML
-    public void excluir(ActionEvent event) throws SQLException {
-    	boolean confirmou = Utils.showConfirmationMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
-    	if(!confirmou) return; 
-    	
-    	equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
-    	serviceEquipamento.excluir(equipamento.getCodigo());
-    	adicioneNaGrid();
-    }
+	private void carregueMarcas() throws SQLException {
+		List<Marca> marcas = serviceMarca.listar();
+		cbMarca.getItems().addAll(marcas);
+	}
 
-    @FXML
-    public void salvar(ActionEvent event) throws SQLException {
-    	monteEquipamento();
-    	serviceEquipamento.salvar(equipamento);
-    	adicioneNaGrid();
-    	clear();
-    }
-    
-    @FXML
-    public void editar(ActionEvent event) throws SQLException {
-    	exibaEquipamentoNosCampos();
-    	
-    	btnEditar.setDisable(true);
-    	
-    	if(btnSalvar.isHover()) {
-    		monteEquipamento();
-    		serviceEquipamento.editar(equipamento);
-    	}
-    	
-    }
-    
-    private void exibaEquipamentoNosCampos() {
-    	this.equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
-    	
-    	this.txtNome.setText(equipamento.getNome());
-    	this.txtCodigo.setText(String.valueOf(equipamento.getCodigo()));
-    	this.cbTipo.getSelectionModel().select(equipamento.getTipo());
-    	this.cbMarca.getSelectionModel().select(equipamento.getMarca());
-    	this.txtDescricao.setText(equipamento.getDescricao());
-    }
-    
+	private void carreguetipos() throws SQLException {
+		List<Tipo> tipos = serviceTipo.listar();
+		cbTipo.getItems().addAll(tipos);
+	}
 
-    private void monteEquipamento() {
-    	equipamento.setCodigo(Integer.parseInt(txtCodigo.getText()));
-    	equipamento.setNome(txtNome.getText());
-    	equipamento.setTipo(cbTipo.getSelectionModel().getSelectedItem());
-    	equipamento.setMarca(cbMarca.getSelectionModel().getSelectedItem());
-    	equipamento.setDescricao(txtDescricao.getText());
-    }
-    
-    private void adicioneNaGrid() throws SQLException {
-    	equipamentos = serviceEquipamento.listar();
-    	clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-    	clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-    	clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-    	clnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-    	clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+	@FXML
+	public void exclua(ActionEvent event) throws SQLException {
+		boolean confirmou = Utils.showConfirmationMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
 
-    	tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
-    }
-    
-    private void clear() {
-    	txtNome.clear();;
-    	txtCodigo.clear();
-    	cbTipo.setValue(null);
-    	cbMarca.setValue(null);
-    	txtDescricao.clear();
-    	equipamento = new Equipamento();
-    }
+		if (!confirmou) return;
 
+		equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
+		serviceEquipamento.excluir(equipamento.getCodigo());
+		adicioneNaGrid();
+	}
+
+	private void retireDoEstadodeDeEdicao() {
+		ehEdicao = false;
+		btnExcluir.setText("Excluir");
+		btnExcluir.setOnAction(actionExcluir);
+		btnEditar.setDisable(false);
+		txtCodigo.setDisable(false);
+		clear();
+	}
+
+	@FXML
+	public void graveEquipamento(ActionEvent event) throws SQLException {
+		monteEquipamento();
+
+		if (ehEdicao) {
+			serviceEquipamento.editar(equipamento);
+		} else {
+			serviceEquipamento.salvar(equipamento);
+		}
+
+		adicioneNaGrid();
+		clear();
+		retireDoEstadodeDeEdicao();
+	}
+
+	@FXML
+	public void prepareParaEditar(ActionEvent event) {
+		exibaEquipamentoNosCampos();
+		ehEdicao = true;
+		btnExcluir.setText("Cancelar");
+		
+		actionExcluir = btnExcluir.getOnAction();
+		btnExcluir.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				retireDoEstadodeDeEdicao();
+			}
+		});
+		
+		btnEditar.setDisable(true);
+		txtCodigo.setDisable(true);
+	}
+
+	private void exibaEquipamentoNosCampos() {
+		this.equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
+
+		this.txtNome.setText(equipamento.getNome());
+		this.txtCodigo.setText(String.valueOf(equipamento.getCodigo()));
+		this.cbTipo.getSelectionModel().select(equipamento.getTipo());
+		this.cbMarca.getSelectionModel().select(equipamento.getMarca());
+		this.txtDescricao.setText(equipamento.getDescricao());
+	}
+
+	private void monteEquipamento() {
+		equipamento.setCodigo(Integer.parseInt(txtCodigo.getText()));
+		equipamento.setNome(txtNome.getText());
+		equipamento.setTipo(cbTipo.getSelectionModel().getSelectedItem());
+		equipamento.setMarca(cbMarca.getSelectionModel().getSelectedItem());
+		equipamento.setDescricao(txtDescricao.getText());
+	}
+
+	private void adicioneNaGrid() throws SQLException {
+		equipamentos = serviceEquipamento.listar();
+		clnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+		clnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		clnTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		clnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+		clnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+
+		tblEquipamentos.setItems(FXCollections.observableArrayList(equipamentos));
+	}
+
+	private void clear() {
+		txtNome.clear();
+		txtCodigo.clear();
+		cbTipo.setValue(null);
+		cbMarca.setValue(null);
+		txtDescricao.clear();
+		equipamento = new Equipamento();
+	}
 }
