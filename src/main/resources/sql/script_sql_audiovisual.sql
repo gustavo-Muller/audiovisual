@@ -6,37 +6,53 @@ CREATE DATABASE audiovisual;
 
 USE audiovisual;
 
-CREATE TABLE teste (
-   id BIGINT (20) PRIMARY KEY AUTO_INCREMENT,
-   nome VARCHAR(100)
-);
+CREATE TABLE IF NOT EXISTS Usuario(
+  `idUsuario` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `nome` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `telefone` VARCHAR(100) NOT NULL,
+  `celular` VARCHAR(100) NOT NULL,
+  `tipo` INT(20) NOT NULL
+  );
 
-CREATE TABLE usuario (
-   id BIGINT (20) PRIMARY KEY AUTO_INCREMENT,
-   nome VARCHAR(100) NOT NULL,
-   email VARCHAR(100) NOT NULL,
-   telefone VARCHAR(100),
-   celular VARCHAR(20) NOT NULL,
-   tipo int(20) NOT NULL
-);
 
-CREATE TABLE marca(
-id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-descricao VARCHAR(50) NOT NULL
-);
+CREATE TABLE IF NOT EXISTS Marca (
+  `idMarca` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `nome` VARCHAR(100) NOT NULL
+  );
+  
 
-CREATE TABLE tipo(
-id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-descricao VARCHAR(50) NOT NULL
-);
+CREATE TABLE IF NOT EXISTS Equipamento(
+  `idEquipamento` INT  PRIMARY KEY NOT NULL auto_increment,
+  `codigo` int not null,
+  `nome` VARCHAR(100) NOT NULL,
+  `descricao` VARCHAR(100) NOT NULL,
+  `Marca_idMarca` INT NOT NULL,
+    FOREIGN KEY (`Marca_idMarca`)REFERENCES `Marca` (`idMarca`)
+   );
 
-CREATE TABLE equipamento(
-id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(100) NOT NULL,
-descricao VARCHAR(100),
-id_marca BIGINT(10) NOT NULL,
-id_tipo BIGINT(10) NOT NULL,
 
-FOREIGN KEY(id_marca) REFERENCES marca(id),
-FOREIGN KEY(id_tipo) REFERENCES tipo(id)
-);
+CREATE TABLE IF NOT EXISTS Data_hora(
+  `idData_hora` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `data_retirada` datetime NOT NULL,
+  `data_devolucao` datetime NOT NULL
+  );
+
+
+
+CREATE TABLE IF NOT EXISTS Aluguel (
+  `idAluguel` INT(11) NOT NULL PRIMARY KEY  AUTO_INCREMENT,
+  `Usuario_idUsuario` INT NOT NULL,
+  `Data_hora_idData_hora` INT NOT NULL,
+    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`),
+    FOREIGN KEY (`Data_hora_idData_hora`) REFERENCES `Data_hora` (`idData_hora`)
+    );
+   
+
+CREATE TABLE IF NOT EXISTS Aluguel_equipamento (
+  `Aluguel_idAluguel` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `Equipamento_idEquipamento` INT NOT NULL,
+  `idAluguel_equipamento` INT(11) NOT NULL,
+    FOREIGN KEY (`Aluguel_idAluguel`)REFERENCES `Aluguel` (`idAluguel`),    
+    FOREIGN KEY (`Equipamento_idEquipamento`)REFERENCES `Equipamento` (`idEquipamento`)
+    );    
