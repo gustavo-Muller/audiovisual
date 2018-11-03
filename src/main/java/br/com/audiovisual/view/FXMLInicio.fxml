@@ -33,6 +33,7 @@
 					<items>
 						<MenuItem fx:id="miPessoa" mnemonicParsing="false" onAction="#irParaCadastroUsuario" text="Usuario" />
 						<MenuItem fx:id="miEquipamento" mnemonicParsing="false" onAction="#irParaCadastroEquipamento" text="Equipamento" />
+                  <MenuItem fx:id="menuMarca" mnemonicParsing="false" onAction="#irParaCadastroMarca" text="Marca" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Locação">

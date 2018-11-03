@@ -26,7 +26,7 @@ public class InicioController {
 	private MenuItem miTeste;
 
 	@FXML
-	private MenuItem miEquipamento;
+	private MenuItem miEquipamento, menuMarca, menuInicio;
 
 	@FXML
 	private MenuItem miLEquipamento;
@@ -35,11 +35,11 @@ public class InicioController {
 	private MenuItem menuItemInicio;
 
 	Stage stage = new Stage();
-	
+
 	public void irParaInicio() throws IOException {
 
 		URL arquivoFxml;
-		arquivoFxml = getClass().getResource("../view/FXMLInicio.fxml"); 
+		arquivoFxml = getClass().getResource("../view/FXMLInicio.fxml");
 		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
 		acPanePrincipal.getChildren().clear();
 		acPanePrincipal.getChildren().add(fxmlParent);
@@ -58,6 +58,15 @@ public class InicioController {
 
 		URL arquivoFxml;
 		arquivoFxml = getClass().getResource("../view/FXMLUsuarioCadastro.fxml");
+		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
+		acPanePrincipal.getChildren().clear();
+		acPanePrincipal.getChildren().add(fxmlParent);
+	}
+
+	public void irParaCadastroMarca() throws IOException {
+
+		URL arquivoFxml;
+		arquivoFxml = getClass().getResource("../view/FXMLMarca.fxml");
 		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
 		acPanePrincipal.getChildren().clear();
 		acPanePrincipal.getChildren().add(fxmlParent);

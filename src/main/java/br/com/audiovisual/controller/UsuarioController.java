@@ -106,8 +106,8 @@ public class UsuarioController implements Initializable {
 		montaOnjetoDaTabelaNosCampos();
 		Utils.showMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
 		this.service.ecluirUsuario(usuarioSelecionado);
-		usuarioSelecionado = new Usuario();
 		AdicioneNaGrid();
+		usuarioSelecionado = new Usuario();
 		clear();
 	}
 
