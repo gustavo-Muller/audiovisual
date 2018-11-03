@@ -182,10 +182,10 @@ public class EquipamentoController implements Initializable {
 
 	private boolean podeMontarEquipamento() {
 
-////		if (valideCampo(txtCodigo.getText().isEmpty(), "Código é obrigatório!")) return false;
-//		if (valideCampo(txtNome.getText().isEmpty(), "Nome é obrigatório!")) return false;
-//		if (valideCampo(cbTipo.getSelectionModel().getSelectedItem() == null, "Selecione um Tipo de Equipamento!")) return false;
-//		if (valideCampo(cbMarca.getSelectionModel().getSelectedItem() == null, "Selecione uma marca!")) return false;
+//		if (valideCampo(txtCodigo.getText().isEmpty(), "Código é obrigatório!")) return true;
+//		if (valideCampo(txtNome.getText().isEmpty(), "Nome é obrigatório!")) return true;
+//		if (valideCampo(cbTipo.getSelectionModel().getSelectedItem() == null, "Selecione um Tipo de Equipamento!")) return true;
+//		if (valideCampo(cbMarca.getSelectionModel().getSelectedItem() == null, "Selecione uma marca!")) return true;
 
 		return true;
 	}
