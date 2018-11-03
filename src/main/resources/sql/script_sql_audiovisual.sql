@@ -7,7 +7,7 @@ CREATE DATABASE audiovisual;
 USE audiovisual;
 
 CREATE TABLE IF NOT EXISTS Usuario(
-  `idUsuario` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `telefone` VARCHAR(100) NOT NULL,
@@ -18,13 +18,14 @@ CREATE TABLE IF NOT EXISTS Usuario(
 
 CREATE TABLE IF NOT EXISTS Marca (
   `idMarca` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `nome` VARCHAR(100) NOT NULL
+  `nome` VARCHAR(100) NOT NULL,
+  descricao VARCHAR(255)
   );
   
 
 CREATE TABLE IF NOT EXISTS Equipamento(
   `idEquipamento` INT  PRIMARY KEY NOT NULL auto_increment,
-  `codigo` int not null,
+  `codigo` VARCHAR(100) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `descricao` VARCHAR(100) NOT NULL,
   `marca` INT NOT NULL,
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Aluguel (
   `idAluguel` INT(11) NOT NULL PRIMARY KEY  AUTO_INCREMENT,
   `Usuario_idUsuario` INT NOT NULL,
   `Data_hora_idData_hora` INT NOT NULL,
-    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`),
+    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`id`),
     FOREIGN KEY (`Data_hora_idData_hora`) REFERENCES `Data_hora` (`idData_hora`)
     );
    
@@ -56,4 +57,6 @@ CREATE TABLE IF NOT EXISTS Aluguel_equipamento (
   `idAluguel_equipamento` INT(11) NOT NULL,
     FOREIGN KEY (`Aluguel_idAluguel`)REFERENCES `Aluguel` (`idAluguel`),    
     FOREIGN KEY (`Equipamento_idEquipamento`)REFERENCES `Equipamento` (`idEquipamento`)
-    );    
+    ); 
+    
+ USE audiovisual;

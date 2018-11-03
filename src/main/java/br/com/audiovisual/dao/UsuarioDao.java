@@ -15,7 +15,6 @@ public class UsuarioDao {
 
 	private PreparedStatement stmt;
 	private Connection con;
-	private Statement stm;
 	private ConnectionFactory connection = null;
 
 	public UsuarioDao() {
@@ -63,8 +62,8 @@ public class UsuarioDao {
 		List<Usuario> list = new ArrayList<>();
 		ResultSet res = null;
 
-		stm = con.createStatement();
-		res = stm.executeQuery(listar);
+		stmt = (PreparedStatement) con.prepareStatement(listar);
+		res = stmt.executeQuery();
 
 		while (res.next()) {
 			Usuario user = new Usuario();

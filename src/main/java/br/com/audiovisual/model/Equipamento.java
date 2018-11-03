@@ -5,13 +5,13 @@ import br.com.audiovisual.enumerador.TipoEquipamento;
 public class Equipamento {
 	
 	private Long id;
-	private int codigo;
+	private String codigo;
 	private String nome;
 	private TipoEquipamento tipo;
 	private Marca marca;
 	private String descricao;
 
-	public Equipamento(Long id, String nome, int codigo, TipoEquipamento tipo, Marca marca, String descricao) {
+	public Equipamento(Long id, String nome, String codigo, TipoEquipamento tipo, Marca marca, String descricao) {
 		this.id = id;
 		this.nome = nome;
 		this.codigo = codigo;
@@ -40,11 +40,11 @@ public class Equipamento {
 		this.nome = nome;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 

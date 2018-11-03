@@ -1,18 +1,13 @@
 package br.com.audiovisual.controller;
 
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.JDialog;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 
 import br.com.audiovisual.Utils.Utils;
@@ -26,12 +21,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EquipamentoController implements Initializable {
@@ -181,7 +173,7 @@ public class EquipamentoController implements Initializable {
 			equipamento.setId(id);
 		}
 
-		equipamento.setCodigo(Integer.parseInt(txtCodigo.getText()));
+		equipamento.setCodigo(txtCodigo.getText());
 		equipamento.setNome(txtNome.getText());
 		equipamento.setTipo(cbTipo.getSelectionModel().getSelectedItem().getId());
 		equipamento.setMarca(cbMarca.getSelectionModel().getSelectedItem());
@@ -190,10 +182,10 @@ public class EquipamentoController implements Initializable {
 
 	private boolean podeMontarEquipamento() {
 
-		if (valideCampo(txtCodigo.getText().isEmpty(), "Código é obrigatório!")) return false;
-		if (valideCampo(txtNome.getText().isEmpty(), "Nome é obrigatório!")) return false;
-		if (valideCampo(cbTipo.getSelectionModel().getSelectedItem() == null, "Selecione um Tipo de Equipamento!")) return false;
-		if (valideCampo(cbMarca.getSelectionModel().getSelectedItem() == null, "Selecione uma marca!")) return false;
+////		if (valideCampo(txtCodigo.getText().isEmpty(), "Código é obrigatório!")) return false;
+//		if (valideCampo(txtNome.getText().isEmpty(), "Nome é obrigatório!")) return false;
+//		if (valideCampo(cbTipo.getSelectionModel().getSelectedItem() == null, "Selecione um Tipo de Equipamento!")) return false;
+//		if (valideCampo(cbMarca.getSelectionModel().getSelectedItem() == null, "Selecione uma marca!")) return false;
 
 		return true;
 	}

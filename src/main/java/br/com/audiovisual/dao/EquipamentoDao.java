@@ -38,7 +38,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 		con.setAutoCommit(false);
 		stmt = con.prepareStatement(salvar);
 		
-		stmt.setLong(1, obj.getCodigo());
+		stmt.setString(1, obj.getCodigo());
 		stmt.setString(2, obj.getNome());
 		stmt.setString(3, obj.getDescricao());
 		stmt.setLong(4, obj.getMarca().getId());
@@ -53,7 +53,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 		con.setAutoCommit(false);
 		stmt = con.prepareStatement(editar);
 		
-		stmt.setLong(1, equipamento.getCodigo());
+		stmt.setString(1, equipamento.getCodigo());
 		stmt.setString(2, equipamento.getNome());
 		stmt.setString(3, equipamento.getDescricao());
 		stmt.setLong(4, equipamento.getMarca().getId());
@@ -99,7 +99,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 			
 			equipamento.setId(res.getLong("idEquipamento"));
 			equipamento.setNome(res.getString("nome"));
-			equipamento.setCodigo(res.getInt("codigo"));
+			equipamento.setCodigo(res.getString("codigo"));
 			
 			marca.setId(res.getLong("idMarca"));
 			marca.setNome(res.getString("nomeMarca"));
