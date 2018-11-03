@@ -27,8 +27,9 @@ CREATE TABLE IF NOT EXISTS Equipamento(
   `codigo` int not null,
   `nome` VARCHAR(100) NOT NULL,
   `descricao` VARCHAR(100) NOT NULL,
-  `Marca_idMarca` INT NOT NULL,
-    FOREIGN KEY (`Marca_idMarca`)REFERENCES `Marca` (`idMarca`)
+  `marca` INT NOT NULL,
+  `tipo` INT NOT NULL,
+    FOREIGN KEY (`marca`)REFERENCES `Marca` (`idMarca`)
    );
 
 

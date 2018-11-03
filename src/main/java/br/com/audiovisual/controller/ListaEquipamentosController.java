@@ -9,8 +9,6 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 
 import br.com.audiovisual.model.Equipamento;
-import br.com.audiovisual.model.Marca;
-import br.com.audiovisual.model.Tipo;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

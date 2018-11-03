@@ -34,8 +34,8 @@ public class MarcaDao {
 		
 		while(res.next()) {
 			Marca m = new Marca();
-			m.setId(res.getLong("id"));
-			m.setDescricao(res.getString("descricao"));
+			m.setId(res.getLong("idMarca"));
+			m.setNome(res.getString("nome"));
 			list.add(m);
 		}
 		

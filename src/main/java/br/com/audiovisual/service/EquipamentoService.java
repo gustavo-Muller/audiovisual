@@ -19,7 +19,7 @@ public class EquipamentoService {
 		return equipamentos;
 	}
 
-	public void excluir(int codigo) throws SQLException {
+	public void excluir(Long codigo) throws SQLException {
 		if(codigo == 0) return;
 		else {
 			dao.excluir(codigo);
@@ -28,6 +28,7 @@ public class EquipamentoService {
 	}
 
 	public void editar(Equipamento equipamento) throws SQLException {
+		if(equipamento.getId() == null || equipamento.getId() == 0) return;
 		dao.atualizar(equipamento);
 	}
 
