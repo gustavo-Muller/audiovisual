@@ -3,11 +3,11 @@ package br.com.audiovisual.model;
 public class Marca {
 
 	private Long id;
-	private String descricao;
+	private String nome;
 
-	public Marca(Long id, String nome, String descricao) {
+	public Marca(Long id, String nome) {
 		this.id = id;
-		this.descricao = descricao;
+		this.nome = nome;
 	}
 
 	public Marca() {
@@ -22,24 +22,24 @@ public class Marca {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	@Override
 	public String toString() {
-		return descricao;
+		return nome;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -52,10 +52,10 @@ public class Marca {
 		if (getClass() != obj.getClass())
 			return false;
 		Marca other = (Marca) obj;
-		if (descricao == null) {
-			if (other.descricao != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!descricao.equals(other.descricao))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

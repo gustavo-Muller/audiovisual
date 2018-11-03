@@ -1,14 +1,18 @@
 package br.com.audiovisual.model;
 
+import br.com.audiovisual.enumerador.TipoEquipamento;
+
 public class Equipamento {
 	
+	private Long id;
 	private int codigo;
 	private String nome;
-	private Tipo tipo;
+	private TipoEquipamento tipo;
 	private Marca marca;
 	private String descricao;
 
-	public Equipamento(String nome, int codigo, Tipo tipo, Marca marca, String descricao) {
+	public Equipamento(Long id, String nome, int codigo, TipoEquipamento tipo, Marca marca, String descricao) {
+		this.id = id;
 		this.nome = nome;
 		this.codigo = codigo;
 		this.tipo = tipo;
@@ -18,6 +22,14 @@ public class Equipamento {
 
 	public Equipamento() {
 
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -36,12 +48,17 @@ public class Equipamento {
 		this.codigo = codigo;
 	}
 
-	public Tipo getTipo() {
+	public TipoEquipamento getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
+	public void setTipo(Long id) {
+		for (TipoEquipamento tipo : TipoEquipamento.values()) {
+			if (tipo.getId() == id) {
+				this.tipo = tipo;
+				break;
+			}
+		}
 	}
 
 	public Marca getMarca() {

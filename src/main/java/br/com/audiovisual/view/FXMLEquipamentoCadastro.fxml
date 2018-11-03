@@ -41,8 +41,8 @@
       						</Label>
       						<Label text="Código*" GridPane.rowIndex="1" />
       						<Label text="Tipo*" GridPane.rowIndex="2" />
-      						<Label text="Marca" GridPane.rowIndex="3" />
-      						<Label text="Descrição*" GridPane.rowIndex="4">
+      						<Label text="Marca*" GridPane.rowIndex="3" />
+      						<Label text="Descrição" GridPane.rowIndex="4">
       							<GridPane.margin>
       								<Insets />
       							</GridPane.margin>

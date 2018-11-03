@@ -1,33 +1,37 @@
 package br.com.audiovisual.controller;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.JDialog;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 
 import br.com.audiovisual.Utils.Utils;
+import br.com.audiovisual.enumerador.TipoEquipamento;
 import br.com.audiovisual.model.Equipamento;
 import br.com.audiovisual.model.Marca;
-import br.com.audiovisual.model.Tipo;
 import br.com.audiovisual.service.EquipamentoService;
 import br.com.audiovisual.service.MarcaService;
-import br.com.audiovisual.service.TipoService;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EquipamentoController implements Initializable {
@@ -36,7 +40,7 @@ public class EquipamentoController implements Initializable {
 	private JFXTextField txtNome, txtCodigo, txtDescricao;
 
 	@FXML
-	private JFXComboBox<Tipo> cbTipo;
+	private JFXComboBox<TipoEquipamento> cbTipo;
 
 	@FXML
 	private JFXComboBox<Marca> cbMarca;
@@ -67,7 +71,6 @@ public class EquipamentoController implements Initializable {
 
 	private EquipamentoService serviceEquipamento = new EquipamentoService();
 	private MarcaService serviceMarca = new MarcaService();
-	private TipoService serviceTipo = new TipoService();
 
 	private Equipamento equipamento = new Equipamento();
 	private List<Equipamento> equipamentos = new ArrayList<>();
@@ -85,22 +88,25 @@ public class EquipamentoController implements Initializable {
 
 	private void carregueMarcas() throws SQLException {
 		List<Marca> marcas = serviceMarca.listar();
+		cbMarca.getItems().add(null);
 		cbMarca.getItems().addAll(marcas);
 	}
 
-	private void carreguetipos() throws SQLException {
-		List<Tipo> tipos = serviceTipo.listar();
-		cbTipo.getItems().addAll(tipos);
+	private void carreguetipos() {
+		cbTipo.getItems().add(null);
+		cbTipo.getItems().addAll(TipoEquipamento.values());
 	}
 
 	@FXML
 	public void exclua(ActionEvent event) throws SQLException {
+		if (!possuiEquipamentoSelecionado())
+			return;
+
 		boolean confirmou = Utils.showConfirmationMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
+		if (!confirmou)
+			return;
 
-		if (!confirmou) return;
-
-		equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
-		serviceEquipamento.excluir(equipamento.getCodigo());
+		serviceEquipamento.excluir(equipamento.getId());
 		adicioneNaGrid();
 	}
 
@@ -115,6 +121,9 @@ public class EquipamentoController implements Initializable {
 
 	@FXML
 	public void graveEquipamento(ActionEvent event) throws SQLException {
+
+		if (!podeMontarEquipamento())
+			return;
 		monteEquipamento();
 
 		if (ehEdicao) {
@@ -130,10 +139,13 @@ public class EquipamentoController implements Initializable {
 
 	@FXML
 	public void prepareParaEditar(ActionEvent event) {
+		if (!possuiEquipamentoSelecionado())
+			return;
+
 		exibaEquipamentoNosCampos();
 		ehEdicao = true;
 		btnExcluir.setText("Cancelar");
-		
+
 		actionExcluir = btnExcluir.getOnAction();
 		btnExcluir.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -141,13 +153,11 @@ public class EquipamentoController implements Initializable {
 				retireDoEstadodeDeEdicao();
 			}
 		});
-		
+
 		btnEditar.setDisable(true);
-		txtCodigo.setDisable(true);
 	}
 
 	private void exibaEquipamentoNosCampos() {
-		this.equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
 
 		this.txtNome.setText(equipamento.getNome());
 		this.txtCodigo.setText(String.valueOf(equipamento.getCodigo()));
@@ -156,12 +166,43 @@ public class EquipamentoController implements Initializable {
 		this.txtDescricao.setText(equipamento.getDescricao());
 	}
 
+	private boolean possuiEquipamentoSelecionado() {
+		this.equipamento = tblEquipamentos.getSelectionModel().getSelectedItem();
+		if (equipamento == null) {
+			Utils.showMessage(AlertType.INFORMATION, "Selecione um equipamento");
+			return false;
+		}
+		return true;
+	}
+
 	private void monteEquipamento() {
+		if (ehEdicao) {
+			Long id = tblEquipamentos.getSelectionModel().getSelectedItem().getId();
+			equipamento.setId(id);
+		}
+
 		equipamento.setCodigo(Integer.parseInt(txtCodigo.getText()));
 		equipamento.setNome(txtNome.getText());
-		equipamento.setTipo(cbTipo.getSelectionModel().getSelectedItem());
+		equipamento.setTipo(cbTipo.getSelectionModel().getSelectedItem().getId());
 		equipamento.setMarca(cbMarca.getSelectionModel().getSelectedItem());
 		equipamento.setDescricao(txtDescricao.getText());
+	}
+
+	private boolean podeMontarEquipamento() {
+
+		if (valideCampo(txtCodigo.getText().isEmpty(), "Código é obrigatório!")) return false;
+		if (valideCampo(txtNome.getText().isEmpty(), "Nome é obrigatório!")) return false;
+		if (valideCampo(cbTipo.getSelectionModel().getSelectedItem() == null, "Selecione um Tipo de Equipamento!")) return false;
+		if (valideCampo(cbMarca.getSelectionModel().getSelectedItem() == null, "Selecione uma marca!")) return false;
+
+		return true;
+	}
+
+	private boolean valideCampo(boolean ehCondicaoValida, String mensagem) {
+		if (!ehCondicaoValida) {
+			Utils.showMessage(AlertType.INFORMATION, mensagem);
+		}
+		return true;
 	}
 
 	private void adicioneNaGrid() throws SQLException {
