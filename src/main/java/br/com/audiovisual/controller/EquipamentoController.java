@@ -105,7 +105,7 @@ public class EquipamentoController implements Initializable {
 	}
 
 	@FXML
-	public void graveEquipamento(ActionEvent event) throws SQLException {
+	public void salvar(ActionEvent event) throws SQLException {
 
 		if (!podeMontarEquipamento())
 			return;

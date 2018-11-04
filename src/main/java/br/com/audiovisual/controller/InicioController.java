@@ -6,6 +6,7 @@ import java.net.URL;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -65,11 +66,13 @@ public class InicioController {
 
 	public void irParaCadastroMarca() throws IOException {
 
+		Stage stage = new Stage();
 		URL arquivoFxml;
 		arquivoFxml = getClass().getResource("../view/FXMLMarca.fxml");
 		Parent fxmlParent = (Parent) FXMLLoader.load(arquivoFxml);
-		acPanePrincipal.getChildren().clear();
-		acPanePrincipal.getChildren().add(fxmlParent);
+		Scene scene = new Scene(fxmlParent);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	@FXML
