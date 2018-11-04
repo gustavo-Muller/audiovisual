@@ -73,6 +73,8 @@ public class EquipamentoController implements Initializable {
 			carregueMarcas();
 			carreguetipos();
 			adicioneNaGrid();
+			btnEditar.setDisable(true);
+			btnExcluir.setDisable(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -100,15 +102,6 @@ public class EquipamentoController implements Initializable {
 
 		serviceEquipamento.excluir(equipamento.getId());
 		adicioneNaGrid();
-	}
-
-	private void retireDoEstadodeDeEdicao() {
-		ehEdicao = false;
-		btnExcluir.setText("Excluir");
-		btnExcluir.setOnAction(actionExcluir);
-		btnEditar.setDisable(false);
-		txtCodigo.setDisable(false);
-		clear();
 	}
 
 	@FXML
@@ -148,6 +141,14 @@ public class EquipamentoController implements Initializable {
 
 		btnEditar.setDisable(true);
 	}
+	
+	private void retireDoEstadodeDeEdicao() {
+		ehEdicao = false;
+		btnExcluir.setText("Excluir");
+		btnExcluir.setOnAction(actionExcluir);
+		btnEditar.setDisable(true);
+		clear();
+	}
 
 	private void exibaEquipamentoNosCampos() {
 
@@ -182,19 +183,20 @@ public class EquipamentoController implements Initializable {
 
 	private boolean podeMontarEquipamento() {
 
-//		if (valideCampo(txtCodigo.getText().isEmpty(), "Código é obrigatório!")) return true;
-//		if (valideCampo(txtNome.getText().isEmpty(), "Nome é obrigatório!")) return true;
-//		if (valideCampo(cbTipo.getSelectionModel().getSelectedItem() == null, "Selecione um Tipo de Equipamento!")) return true;
-//		if (valideCampo(cbMarca.getSelectionModel().getSelectedItem() == null, "Selecione uma marca!")) return true;
+		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome é obrigatório!")) return false;
+		if (valideCampo(txtCodigo.getText().isEmpty() || txtCodigo.getText() == null, "Código é obrigatório!")) return false;		
+		if (valideCampo(cbTipo.getSelectionModel().isEmpty() || cbTipo.getSelectionModel() == null, "Selecione um Tipo de Equipamento!")) return false;
+		if (valideCampo(cbMarca.getSelectionModel().isEmpty() || cbMarca.getSelectionModel() == null, "Selecione uma marca!")) return false;
 
 		return true;
 	}
 
-	private boolean valideCampo(boolean ehCondicaoValida, String mensagem) {
-		if (!ehCondicaoValida) {
+	private boolean valideCampo(boolean estaInconsistente, String mensagem) {
+		if (estaInconsistente) {
 			Utils.showMessage(AlertType.INFORMATION, mensagem);
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	private void adicioneNaGrid() throws SQLException {

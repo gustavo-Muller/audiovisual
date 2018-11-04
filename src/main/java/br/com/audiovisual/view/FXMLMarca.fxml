@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="572.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.MarcaController">
+<AnchorPane prefHeight="399.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.audiovisual.controller.MarcaController">
 	<children>
-		<Label prefHeight="27.0" prefWidth="500.0" style="-fx-background-color: gray;" text="                                      Cadastro de Marcas" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+		<Label alignment="CENTER" contentDisplay="CENTER" layoutX="-119.0" layoutY="14.0" prefHeight="37.0" prefWidth="645.0" style="-fx-background-color: gray;" text="Cadastro de Marcas" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<font>
 				<Font name="Calibri" size="32.0" />
 			</font>
 		</Label>
-		<Label layoutX="26.0" layoutY="94.0" text="Nome*" />
-		<JFXTextField fx:id="txtNomeMarca" layoutX="90.0" layoutY="90.0" prefHeight="25.0" prefWidth="194.0" />
-		<Label layoutX="14.0" layoutY="149.0" text="Descrição" />
-		<JFXButton fx:id="btSalvar" buttonType="RAISED" layoutX="135.0" layoutY="233.0" onAction="#salvar" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: gray;" text="Salvar" />
-		<JFXButton fx:id="btLimpar" buttonType="RAISED" layoutX="220.0" layoutY="234.0" onAction="#limpar" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: gray;" text="Limpar" />
-		<TableView fx:id="tbMarca" layoutX="364.0" layoutY="71.0" prefHeight="446.0" prefWidth="436.0" AnchorPane.bottomAnchor="0.0">
+		<Label layoutX="14.0" layoutY="64.0" text="Nome:*" />
+		<JFXTextField fx:id="txtNomeMarca" layoutX="78.0" layoutY="60.0" prefHeight="25.0" prefWidth="194.0" />
+		<Label layoutX="14.0" layoutY="149.0" text="Descrição:" />
+		<JFXButton fx:id="btSalvar" buttonType="RAISED" layoutX="313.0" layoutY="60.0" onAction="#salvar" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: lightgray;" text="Salvar" />
+		<JFXButton fx:id="btExclur" buttonType="RAISED" layoutX="313.0" layoutY="145.0" onAction="#excluir" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: lightgray;" text="Excluir" />
+		<TableView fx:id="tbMarca" layoutX="6.0" layoutY="153.0" prefHeight="217.0" prefWidth="387.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 			<columns>
 				<TableColumn fx:id="tbClNome" prefWidth="92.0" text="Nome" />
 				<TableColumn fx:id="tbClDescricao" prefWidth="342.0" text="Descrição" />
@@ -30,6 +30,7 @@
 				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 			</columnResizePolicy>
 		</TableView>
-		<JFXTextArea fx:id="txtAreaDescricao" layoutX="90.0" layoutY="123.0" prefHeight="69.0" prefWidth="194.0" style="-fx-background-color: Gainsboro;" />
+		<JFXTextArea fx:id="txtAreaDescricao" layoutX="78.0" layoutY="128.0" prefHeight="37.0" prefWidth="194.0" style="-fx-background-color: Gainsboro;" />
+      <JFXButton fx:id="btEditar" buttonType="RAISED" layoutX="313.0" layoutY="103.0" onAction="#editar" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: lightgray;" text="Editar" />
 	</children>
 </AnchorPane>
