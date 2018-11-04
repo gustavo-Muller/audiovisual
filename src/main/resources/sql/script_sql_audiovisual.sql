@@ -6,7 +6,7 @@ CREATE DATABASE audiovisual;
 
 USE audiovisual;
 
-CREATE TABLE IF NOT EXISTS Usuario(
+CREATE TABLE IF NOT EXISTS usuario(
   `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
@@ -16,25 +16,25 @@ CREATE TABLE IF NOT EXISTS Usuario(
   );
 
 
-CREATE TABLE IF NOT EXISTS Marca (
-  `idMarca` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE IF NOT EXISTS marca (
+  `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   descricao VARCHAR(255)
   );
   
 
-CREATE TABLE IF NOT EXISTS Equipamento(
+CREATE TABLE IF NOT EXISTS equipamento(
   `idEquipamento` INT  PRIMARY KEY NOT NULL auto_increment,
   `codigo` VARCHAR(100) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `descricao` VARCHAR(100) NOT NULL,
   `marca` INT NOT NULL,
   `tipo` INT NOT NULL,
-    FOREIGN KEY (`marca`)REFERENCES `Marca` (`idMarca`)
+    FOREIGN KEY (`marca`)REFERENCES `marca` (`idMarca`)
    );
 
 
-CREATE TABLE IF NOT EXISTS Data_hora(
+CREATE TABLE IF NOT EXISTS data_hora(
   `idData_hora` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `data_retirada` datetime NOT NULL,
   `data_devolucao` datetime NOT NULL
@@ -42,21 +42,21 @@ CREATE TABLE IF NOT EXISTS Data_hora(
 
 
 
-CREATE TABLE IF NOT EXISTS Aluguel (
+CREATE TABLE IF NOT EXISTS aluguel (
   `idAluguel` INT(11) NOT NULL PRIMARY KEY  AUTO_INCREMENT,
   `Usuario_idUsuario` INT NOT NULL,
   `Data_hora_idData_hora` INT NOT NULL,
-    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`id`),
-    FOREIGN KEY (`Data_hora_idData_hora`) REFERENCES `Data_hora` (`idData_hora`)
+    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`id`),
+    FOREIGN KEY (`Data_hora_idData_hora`) REFERENCES `data_hora` (`idData_hora`)
     );
    
 
-CREATE TABLE IF NOT EXISTS Aluguel_equipamento (
+CREATE TABLE IF NOT EXISTS aluguel_equipamento (
   `Aluguel_idAluguel` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Equipamento_idEquipamento` INT NOT NULL,
   `idAluguel_equipamento` INT(11) NOT NULL,
     FOREIGN KEY (`Aluguel_idAluguel`)REFERENCES `Aluguel` (`idAluguel`),    
-    FOREIGN KEY (`Equipamento_idEquipamento`)REFERENCES `Equipamento` (`idEquipamento`)
+    FOREIGN KEY (`Equipamento_idEquipamento`)REFERENCES `equipamento` (`idEquipamento`)
     ); 
     
  USE audiovisual;
