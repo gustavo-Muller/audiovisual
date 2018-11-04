@@ -97,7 +97,13 @@ public class UsuarioController implements Initializable {
 		if (usuarioSelecionado.getId() != null) {
 			btEditar.setDisable(true);
 			actionExcluir = btExcluir.getOnAction();
-			trocaFuncaoDoBotao();
+			btExcluir.setText("Cancelar");
+			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					retireDoEstadodeDeEdicao();
+				}
+			});
 		}
 	}
 
@@ -136,36 +142,13 @@ public class UsuarioController implements Initializable {
 
 		service.salva(user);
 		AdicioneNaGrid();
-		trocaFuncaoDoBotao();
+		retireDoEstadodeDeEdicao();
 		btEditar.setDisable(false);
 		btExcluir.setDisable(false);
 		btExcluir.setDisable(true);
 		btEditar.setDisable(true);
 		clear();
 
-	}
-
-	private void trocaFuncaoDoBotao() {
-
-		if (btEditar.isHover()) {
-
-			btExcluir.setText("Cancelar");
-			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					retireDoEstadodeDeEdicao();
-				}
-			});
-
-		} else if (btSalvar.isHover()) {
-			btExcluir.setText("Excluir");
-			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					retireDoEstadodeDeEdicao();
-				}
-			});
-		}
 	}
 
 	public void selecao() {
@@ -194,12 +177,12 @@ public class UsuarioController implements Initializable {
 	}
 
 	private boolean podeMontarUsuario() {
-		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome é obrigatório!"))
+		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome Ã© obrigatÃ³rio!"))
 			return false;
-		if (valideCampo(txtEmail.getText().isEmpty() || txtEmail.getText() == null, "E-mail é obrigatório!"))
+		if (valideCampo(txtEmail.getText().isEmpty() || txtEmail.getText() == null, "E-mail Ã© obrigatÃ³rio!"))
 			return false;
 		if (valideCampo(cbTipoPessoa.getSelectionModel().isEmpty() || cbTipoPessoa.getSelectionModel() == null,
-				"Selecione um Tipo de usuário!"))
+				"Selecione um Tipo de usuÃ¡rio!"))
 			return false;
 
 		return true;
