@@ -2,10 +2,8 @@ package br.com.audiovisual.service;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import br.com.audiovisual.Exeption.RegraDeNegocioExeption;
+import br.com.audiovisual.Exeption.DadosInvalidosExeption;
 import br.com.audiovisual.dao.MarcaDao;
 import br.com.audiovisual.model.Equipamento;
 import br.com.audiovisual.model.Marca;
@@ -33,7 +31,7 @@ public class MarcaService {
 		return marcaDao.consultarById(id);
 	}
 
-	public void editar(Marca marca) throws SQLException {
+	public void editar(Marca marca) throws SQLException, DadosInvalidosExeption {
 		EquipamentoService equipamentoService = new EquipamentoService();
 		List<Equipamento> equipamentos = equipamentoService.listar();
 		
@@ -42,7 +40,7 @@ public class MarcaService {
 		.filter(e -> e.getMarca() == marca) != null;
 		
 		if(possuiMarcaVinculadaAEquipamento) {
-			new RegraDeNegocioExeption("Existe equipamento cadastrado para essa marca,\n não é possível realizar a edição!");
+			throw new DadosInvalidosExeption("Existe MARCA viunculada ao equipamento!");
 		}
 
 		marcaDao.atualizar(marca);

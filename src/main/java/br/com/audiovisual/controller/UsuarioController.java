@@ -177,12 +177,12 @@ public class UsuarioController implements Initializable {
 	}
 
 	private boolean podeMontarUsuario() {
-		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome Ã© obrigatÃ³rio!"))
+		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome é obrigatório!"))
 			return false;
-		if (valideCampo(txtEmail.getText().isEmpty() || txtEmail.getText() == null, "E-mail Ã© obrigatÃ³rio!"))
+		if (valideCampo(txtEmail.getText().isEmpty() || txtEmail.getText() == null, "E-mail é obrigatório!"))
 			return false;
 		if (valideCampo(cbTipoPessoa.getSelectionModel().isEmpty() || cbTipoPessoa.getSelectionModel() == null,
-				"Selecione um Tipo de usuÃ¡rio!"))
+				"Selecione um Tipo de usuário!"))
 			return false;
 
 		return true;

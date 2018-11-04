@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import br.com.audiovisual.Exeption.DadosInvalidosExeption;
 import br.com.audiovisual.Utils.Utils;
 import br.com.audiovisual.model.Marca;
 import br.com.audiovisual.service.MarcaService;
@@ -94,7 +95,7 @@ public class MarcaController implements Initializable {
 	}
 
 	@FXML
-	void salvar() throws SQLException {
+	void salvar() throws SQLException, DadosInvalidosExeption {
 		if (!podeMontarMarca())
 			return;
 
