@@ -77,7 +77,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 	}
 
 	@Override
-	public Equipamento consultarById(int id) {
+	public Equipamento consultarById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -44,7 +44,7 @@ public class MarcaController implements Initializable {
 	private JFXTextArea txtAreaDescricao;
 
 	private EventHandler<ActionEvent> actionExcluir;
-	
+	private boolean ehEdicao;
 	private Marca marca;
 	private MarcaService service = new MarcaService();
 	List<Marca> marcas = new ArrayList<>();
@@ -52,21 +52,24 @@ public class MarcaController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
-			populaView();
+			atualizeGrid();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@FXML
 	void editar(ActionEvent event) {
-		if(!possuiEquipamentoSelecionado()) {
+		if (!possuiEquipamentoSelecionado()) {
 			return;
 		}
+		
 		exibaMarcaNosCampos();
+		
+		ehEdicao = true;
+		btEditar.setDisable(true);
 		btExcluir.setText("Cancelar");
-
+		
 		actionExcluir = btExcluir.getOnAction();
 		btExcluir.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -75,33 +78,48 @@ public class MarcaController implements Initializable {
 			}
 		});
 
-		btExcluir.setDisable(true);
+		
 	}
-	
+
 	private void retireDoEstadodeDeEdicao() {
 		btEditar.setDisable(false);
 		btExcluir.setOnAction(actionExcluir);
 		btExcluir.setText("Excluir");
 		clear();
 	}
-	
+
 	private void exibaMarcaNosCampos() {
 		txtNomeMarca.setText(marca.getNome());
 		txtAreaDescricao.setText(marca.getDescricao().isEmpty() ? "" : marca.getDescricao());
 	}
-	
+
 	@FXML
 	void salvar() throws SQLException {
-		validaCampos();
-		capturaObjetosDosCampos();
-		service.salvar(marca);
+		if (!podeMontarMarca())
+			return;
+
+		monteMarca();
+
+		if (ehEdicao) {
+			service.editar(marca);
+		} else {
+			service.salvar(marca);
+		}
 		clear();
-		populaView();
+		atualizeGrid();
 	}
-	
+
 	@FXML
-	void excluir() throws SQLException{
+	void excluir() throws SQLException {
+		if (!possuiEquipamentoSelecionado())
+			return;
 		
+		boolean confirmou = Utils.showConfirmationMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
+		if(!confirmou) return;
+		
+		marca = tbMarca.getSelectionModel().getSelectedItem();
+		service.excluir(marca.getId());
+		atualizeGrid();
 	}
 
 	private boolean possuiEquipamentoSelecionado() {
@@ -112,28 +130,30 @@ public class MarcaController implements Initializable {
 		}
 		return true;
 	}
-	
-	private void populaView() throws SQLException {
+
+	private void atualizeGrid() throws SQLException {
 		marcas = service.listar();
 		tbClNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tbClDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 
 		tbMarca.setItems(FXCollections.observableArrayList(marcas));
-		
+
 	}
-	
-	public void validaCampos() {
-		if(txtNomeMarca.getText().isEmpty()) {
+
+	public boolean podeMontarMarca() {
+		if (txtNomeMarca.getText().isEmpty()) {
 			Utils.showMessage(AlertType.INFORMATION, "Nome e um campo de Preenchimento OBRIGATÓRIRO!");
+			return false;
 		}
+		return true;
 	}
-	
+
 	public void clear() {
 		txtNomeMarca.setText(null);
 		txtAreaDescricao.setText(null);
 	}
 
-	private void capturaObjetosDosCampos() {
+	private void monteMarca() {
 		marca = new Marca();
 		marca.setNome(txtNomeMarca.getText());
 		marca.setDescricao(txtAreaDescricao.getText());

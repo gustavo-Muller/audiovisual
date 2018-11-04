@@ -18,6 +18,8 @@ public class MarcaDao implements InterfaceDAO<Marca> {
 
 	private final String listar = "SELECT * FROM marca";
 	private final String salvar = "INSERT INTO marca(nome, descricao) VALUES(?, ?)";
+	private final String editar = "UPDATE marca SET nome = ?, descricao = ? WHERE id = ?";
+	private final String excluir = "DELETE FROM marca WHERE id = ?";
 
 	public MarcaDao() {
 		this.connection = new ConnectionFactory();
@@ -44,21 +46,45 @@ public class MarcaDao implements InterfaceDAO<Marca> {
 	}
 
 	@Override
-	public void atualizar(Marca obj) throws SQLException {
-		// TODO Auto-generated method stub
+	public void atualizar(Marca marca) throws SQLException {
+		con.setAutoCommit(false);
+		stmt = con.prepareStatement(editar);
+		
+		stmt.setString(1, marca.getNome());
+		stmt.setString(2, marca.getDescricao().isEmpty() ? "" : marca.getDescricao());
+		stmt.setLong(3, marca.getId());
 
+		stmt.executeUpdate();
+		con.commit();
 	}
 
 	@Override
 	public void excluir(Long id) throws SQLException {
-		// TODO Auto-generated method stub
+		con.setAutoCommit(false);
+		stmt = con.prepareStatement(excluir);
 
+		stmt.setLong(1, id);
+
+		int rowsChange = stmt.executeUpdate();
+		if (rowsChange == 0)
+			return;
+
+		con.commit();
 	}
 
 	@Override
-	public Marca consultarById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Marca consultarById(Long id) throws SQLException {
+		stmt = con.prepareStatement(listar + " WHERE id = ");
+		ResultSet res = stmt.executeQuery();
+		
+		Marca marca = new Marca();
+		
+		if(res.next()) {
+			marca.setId(res.getLong("id"));
+			marca.setNome("nome");
+			marca.setDescricao("descricao");
+		}
+		return marca;
 	}
 
 	@Override
