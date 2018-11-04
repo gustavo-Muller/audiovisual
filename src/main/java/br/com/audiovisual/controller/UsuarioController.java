@@ -4,7 +4,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -21,7 +20,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,7 +65,7 @@ public class UsuarioController implements Initializable {
 	List<Usuario> usuarios = new ArrayList<>();
 	private Usuario user = new Usuario();
 	private Usuario usuarioSelecionado;
-	
+
 	EventHandler<ActionEvent> actionExcluir;
 
 	@FXML
@@ -103,12 +101,12 @@ public class UsuarioController implements Initializable {
 			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					retireDoEstadodeDeEdicao();	
+					retireDoEstadodeDeEdicao();
 				}
 			});
 		}
 	}
-	
+
 	private void retireDoEstadodeDeEdicao() {
 		btExcluir.setText("Excluir");
 		btExcluir.setOnAction(actionExcluir);
@@ -134,10 +132,6 @@ public class UsuarioController implements Initializable {
 		btEditar.setDisable(true);
 		clear();
 	}
-
-//	private void validaExclusao() {
-//		Utils.showMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
-//	}
 
 	@FXML
 	void salvar(ActionEvent event) throws DadosInvalidosExeption, SQLException {
@@ -182,14 +176,12 @@ public class UsuarioController implements Initializable {
 	}
 
 	private boolean podeMontarUsuario() {
-		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome é obrigatório!"))
+		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome Ã© obrigatÃ³rio!"))
 			return false;
-		if (valideCampo(txtEmail.getText().isEmpty() || txtEmail.getText() == null, "E-mail é obrigatório!"))
-			return false;
-		if (valideCampo(txtCelular.getText().isEmpty() || txtCelular.getText() == null, "Número de celular é obrigatório!"))
+		if (valideCampo(txtEmail.getText().isEmpty() || txtEmail.getText() == null, "E-mail Ã© obrigatÃ³rio!"))
 			return false;
 		if (valideCampo(cbTipoPessoa.getSelectionModel().isEmpty() || cbTipoPessoa.getSelectionModel() == null,
-				"Selecione um Tipo de usuário!"))
+				"Selecione um Tipo de usuÃ¡rio!"))
 			return false;
 
 		return true;
@@ -229,15 +221,6 @@ public class UsuarioController implements Initializable {
 
 	public Usuario getUsuarioSelecionado() {
 		return usuarioSelecionado;
-	}
-
-	private void testeException() throws DadosInvalidosExeption {
-		if (txtNome.getText() == null || txtNome.getText().isEmpty() || txtEmail.getText() == null
-				|| txtEmail.getText().isEmpty() || cbTipoPessoa.getSelectionModel().isEmpty()
-				|| cbTipoPessoa.getSelectionModel() == null) {
-			throw new DadosInvalidosExeption();
-		}
-
 	}
 
 }
