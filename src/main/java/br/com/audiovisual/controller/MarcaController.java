@@ -15,6 +15,7 @@ import br.com.audiovisual.model.Marca;
 import br.com.audiovisual.service.MarcaService;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
@@ -28,10 +29,7 @@ public class MarcaController implements Initializable {
 	private JFXTextField txtNomeMarca;
 
 	@FXML
-	private JFXButton btSalvar;
-
-	@FXML
-	private JFXButton btLimpar;
+	private JFXButton btSalvar, btEditar, btExcluir;
 
 	@FXML
 	private TableView<Marca> tbMarca;
@@ -45,6 +43,8 @@ public class MarcaController implements Initializable {
 	@FXML
 	private JFXTextArea txtAreaDescricao;
 
+	private EventHandler<ActionEvent> actionExcluir;
+	
 	private Marca marca;
 	private MarcaService service = new MarcaService();
 	List<Marca> marcas = new ArrayList<>();
@@ -60,10 +60,36 @@ public class MarcaController implements Initializable {
 	}
 
 	@FXML
-	void limpar(ActionEvent event) {
+	void editar(ActionEvent event) {
+		if(!possuiEquipamentoSelecionado()) {
+			return;
+		}
+		exibaMarcaNosCampos();
+		btExcluir.setText("Cancelar");
+
+		actionExcluir = btExcluir.getOnAction();
+		btExcluir.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				retireDoEstadodeDeEdicao();
+			}
+		});
+
+		btExcluir.setDisable(true);
+	}
+	
+	private void retireDoEstadodeDeEdicao() {
+		btEditar.setDisable(false);
+		btExcluir.setOnAction(actionExcluir);
+		btExcluir.setText("Excluir");
 		clear();
 	}
-
+	
+	private void exibaMarcaNosCampos() {
+		txtNomeMarca.setText(marca.getNome());
+		txtAreaDescricao.setText(marca.getDescricao().isEmpty() ? "" : marca.getDescricao());
+	}
+	
 	@FXML
 	void salvar() throws SQLException {
 		validaCampos();
@@ -72,7 +98,21 @@ public class MarcaController implements Initializable {
 		clear();
 		populaView();
 	}
+	
+	@FXML
+	void excluir() throws SQLException{
+		
+	}
 
+	private boolean possuiEquipamentoSelecionado() {
+		this.marca = tbMarca.getSelectionModel().getSelectedItem();
+		if (marca == null) {
+			Utils.showMessage(AlertType.INFORMATION, "Selecione um equipamento");
+			return false;
+		}
+		return true;
+	}
+	
 	private void populaView() throws SQLException {
 		marcas = service.listar();
 		tbClNome.setCellValueFactory(new PropertyValueFactory<>("nome"));

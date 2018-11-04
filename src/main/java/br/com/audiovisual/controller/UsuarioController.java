@@ -17,6 +17,7 @@ import br.com.audiovisual.model.Usuario;
 import br.com.audiovisual.service.UsuarioService;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
@@ -57,9 +58,6 @@ public class UsuarioController implements Initializable {
 	private GridPane grdCadastroUsuario;
 
 	@FXML
-	private JFXButton btCancelar;
-
-	@FXML
 	private TableColumn<Usuario, String> clnNome, clnEmail, clnCelular, clnTelefoneFixo, clnTipo;
 
 	@FXML
@@ -69,7 +67,8 @@ public class UsuarioController implements Initializable {
 	List<Usuario> usuarios = new ArrayList<>();
 	private Usuario user = new Usuario();
 	private Usuario usuarioSelecionado;
-	private boolean podeSalvar;
+	
+	EventHandler<ActionEvent> actionExcluir;
 
 	@FXML
 	void cancelar(ActionEvent event) {
@@ -78,7 +77,6 @@ public class UsuarioController implements Initializable {
 		user = new Usuario();
 
 		btExcluir.setDisable(false);
-		btCancelar.setVisible(false);
 		btEditar.setDisable(true);
 	}
 
@@ -99,10 +97,24 @@ public class UsuarioController implements Initializable {
 		montaOnjetoDaTabelaNosCampos();
 
 		if (usuarioSelecionado.getId() != null) {
-			btCancelar.setVisible(true);
 			btEditar.setDisable(true);
-			btExcluir.setDisable(true);
+			actionExcluir = btExcluir.getOnAction();
+			btExcluir.setText("Cancelar");
+			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					retireDoEstadodeDeEdicao();	
+				}
+			});
 		}
+	}
+	
+	private void retireDoEstadodeDeEdicao() {
+		btExcluir.setText("Excluir");
+		btExcluir.setOnAction(actionExcluir);
+		btEditar.setDisable(true);
+		btExcluir.setDisable(true);
+		clear();
 	}
 
 	@FXML
@@ -129,27 +141,25 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	void salvar(ActionEvent event) throws DadosInvalidosExeption, SQLException {
-		montaObjeto();
-		validaCampos();
 
-		if (podeSalvar == true) {
-			service.salva(user);
-			AdicioneNaGrid();
-			btEditar.setDisable(false);
-			btExcluir.setDisable(false);
-			btCancelar.setVisible(false);
-			btExcluir.setDisable(true);
-			btEditar.setDisable(true);
-			clear();
-		}
-		
+		if (!podeMontarUsuario())
+			return;
+		montaObjeto();
+
+		service.salva(user);
+		AdicioneNaGrid();
+		btEditar.setDisable(false);
+		btExcluir.setDisable(false);
+		btExcluir.setDisable(true);
+		btEditar.setDisable(true);
+		clear();
+
 	}
 
 	public void selecao() {
 		usuarioSelecionado = this.tblUsuarios.getSelectionModel().getSelectedItem();
 		btExcluir.setDisable(false);
 		btEditar.setDisable(false);
-
 	}
 
 	public void montaOnjetoDaTabelaNosCampos() {
@@ -166,26 +176,31 @@ public class UsuarioController implements Initializable {
 		txtTelefone.clear();
 		txtNome.clear();
 		cbTipoPessoa.setValue(null);
-	
+
 		user = new Usuario();
 		usuarioSelecionado = new Usuario();
 	}
 
-	public boolean validaCampos() {
-		if (txtNome.getText().isEmpty() || txtNome.getText() == null) {
-			Utils.showMessage(AlertType.INFORMATION, "Nome e um campo de Preenchimento OBRIGATÃ“RIO!");
-			podeSalvar = false;
-		} else if (txtEmail.getText().isEmpty() || txtEmail.getText() == null) {
-			Utils.showMessage(AlertType.INFORMATION, "E-mail e um campo de Preenchimento OBRIGATÃ“RIO!");
-			podeSalvar = false;
-		} else if (cbTipoPessoa.getSelectionModel().isEmpty() || cbTipoPessoa.getSelectionModel() == null) {
-			Utils.showMessage(AlertType.INFORMATION, "Tipo e um campo de Preenchimento OBRIGATÃ“RIO!");
-			podeSalvar = false;
-		} else {
-			podeSalvar = true;
-		}
-		return podeSalvar;
+	private boolean podeMontarUsuario() {
+		if (valideCampo(txtNome.getText().isEmpty() || txtNome.getText() == null, "Nome é obrigatório!"))
+			return false;
+		if (valideCampo(txtEmail.getText().isEmpty() || txtEmail.getText() == null, "E-mail é obrigatório!"))
+			return false;
+		if (valideCampo(txtCelular.getText().isEmpty() || txtCelular.getText() == null, "Número de celular é obrigatório!"))
+			return false;
+		if (valideCampo(cbTipoPessoa.getSelectionModel().isEmpty() || cbTipoPessoa.getSelectionModel() == null,
+				"Selecione um Tipo de usuário!"))
+			return false;
 
+		return true;
+	}
+
+	private boolean valideCampo(boolean estaInconsistente, String mensagem) {
+		if (estaInconsistente) {
+			Utils.showMessage(AlertType.INFORMATION, mensagem);
+			return true;
+		}
+		return false;
 	}
 
 	private void AdicioneNaGrid() throws SQLException {
