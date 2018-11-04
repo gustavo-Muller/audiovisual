@@ -28,7 +28,7 @@ public class UsuarioService {
 		return list;
 	}
 
-	public void salva(Usuario u) throws SQLException {
+	public void salva(Usuario u) {
 		if (u.getId() != null && u.getId() != 0) {
 			this.editarUsuario(u);
 		} else {
@@ -40,7 +40,7 @@ public class UsuarioService {
 		this.dao.excluir(usuario);
 	}
 
-	public void editarUsuario(Usuario usuario) throws SQLException {
+	public void editarUsuario(Usuario usuario) {
 		this.dao.editar(usuario);
 	}
 

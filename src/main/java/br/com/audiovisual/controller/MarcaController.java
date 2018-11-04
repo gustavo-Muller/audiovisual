@@ -10,12 +10,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import br.com.audiovisual.Utils.Utils;
 import br.com.audiovisual.model.Marca;
 import br.com.audiovisual.service.MarcaService;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -64,6 +66,7 @@ public class MarcaController implements Initializable {
 
 	@FXML
 	void salvar() throws SQLException {
+		validaCampos();
 		capturaObjetosDosCampos();
 		service.salvar(marca);
 		clear();
@@ -77,6 +80,12 @@ public class MarcaController implements Initializable {
 
 		tbMarca.setItems(FXCollections.observableArrayList(marcas));
 		
+	}
+	
+	public void validaCampos() {
+		if(txtNomeMarca.getText().isEmpty()) {
+			Utils.showMessage(AlertType.INFORMATION, "Nome e um campo de Preenchimento OBRIGATÓRIRO!");
+		}
 	}
 	
 	public void clear() {

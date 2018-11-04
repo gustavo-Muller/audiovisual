@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS usuario(
   `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `telefone` VARCHAR(100) NOT NULL,
-  `celular` VARCHAR(100) NOT NULL,
+  `telefone` VARCHAR(100),
+  `celular` VARCHAR(100),
   `tipo` INT(20) NOT NULL
   );
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS equipamento(
   `descricao` VARCHAR(100) NOT NULL,
   `marca` INT NOT NULL,
   `tipo` INT NOT NULL,
-    FOREIGN KEY (`marca`)REFERENCES `marca` (`idMarca`)
+    FOREIGN KEY (`marca`)REFERENCES `marca` (`id`)
    );
 
 

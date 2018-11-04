@@ -14,7 +14,7 @@ public class Utils {
 		}
 		return;
 	}
-	
+
 	public static void showMessageError(String content) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error!");
@@ -37,12 +37,15 @@ public class Utils {
 	}
 
 	public static boolean showConfirmationMessage(AlertType alertType, String content) {
-		Alert alert = new Alert(AlertType.INFORMATION);
+		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmado!");
 		alertBase(alert, content);
 		ButtonType resultado = alert.resultProperty().getValue();
-		if(resultado != ButtonType.OK) return false;
-		return true;
+		if (resultado != ButtonType.OK) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public static void showMessage(AlertType alertType, String content) {

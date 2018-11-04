@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -19,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,6 +69,7 @@ public class UsuarioController implements Initializable {
 	List<Usuario> usuarios = new ArrayList<>();
 	private Usuario user = new Usuario();
 	private Usuario usuarioSelecionado;
+	private boolean podeSalvar;
 
 	@FXML
 	void cancelar(ActionEvent event) {
@@ -104,24 +107,37 @@ public class UsuarioController implements Initializable {
 	@FXML
 	void excluir() throws SQLException {
 		montaOnjetoDaTabelaNosCampos();
-		Utils.showMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
-		this.service.ecluirUsuario(usuarioSelecionado);
-		AdicioneNaGrid();
-		usuarioSelecionado = new Usuario();
-		clear();
+
+		boolean result = Utils.showConfirmationMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
+		if (result == true) {
+			this.service.ecluirUsuario(usuarioSelecionado);
+			AdicioneNaGrid();
+			usuarioSelecionado = new Usuario();
+			clear();
+		} else {
+			clear();
+		}
 	}
 
+//	private void validaExclusao() {
+//		Utils.showMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
+//	}
+
 	@FXML
-	void salvar(ActionEvent event) throws SQLException, DadosInvalidosExeption {
-		testeException();
+	void salvar(ActionEvent event) throws DadosInvalidosExeption, SQLException {
+		validaCampos();
 		montaObjeto();
-		service.salva(user);
-		AdicioneNaGrid();
-		btEditar.setDisable(false);
-		btExcluir.setDisable(false);
-		clear();
-		usuarioSelecionado = new Usuario();
-		user = new Usuario();
+		if (podeSalvar == true) {
+			service.salva(user);
+			AdicioneNaGrid();
+			btEditar.setDisable(false);
+			btExcluir.setDisable(false);
+			clear();
+			usuarioSelecionado = new Usuario();
+			user = new Usuario();
+			btCancelar.setVisible(false);
+		}
+
 	}
 
 	public void selecao() {
@@ -143,6 +159,23 @@ public class UsuarioController implements Initializable {
 		txtNome.setText(null);
 		txtTelefone.setText(null);
 		cbTipoPessoa.setValue(null);
+	}
+
+	public boolean validaCampos() {
+		if (txtNome.getText().isEmpty()) {
+			Utils.showMessage(AlertType.INFORMATION, "Nome e um campo de Preenchimento OBRIGATÓRIO!");
+			podeSalvar = false;
+		} else if (txtEmail.getText().isEmpty()) {
+			Utils.showMessage(AlertType.INFORMATION, "E-mail e um campo de Preenchimento OBRIGATÓRIO!");
+			podeSalvar = false;
+		} else if (cbTipoPessoa.getSelectionModel().isEmpty()) {
+			Utils.showMessage(AlertType.INFORMATION, "Tipo e um campo de Preenchimento OBRIGATÓRIO!");
+			podeSalvar = false;
+		} else {
+			podeSalvar = true;
+		}
+		return podeSalvar;
+
 	}
 
 	private void AdicioneNaGrid() throws SQLException {
@@ -179,6 +212,7 @@ public class UsuarioController implements Initializable {
 				|| cbTipoPessoa.getSelectionModel() == null) {
 			throw new DadosInvalidosExeption();
 		}
+
 	}
 
 }
