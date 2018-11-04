@@ -97,13 +97,7 @@ public class UsuarioController implements Initializable {
 		if (usuarioSelecionado.getId() != null) {
 			btEditar.setDisable(true);
 			actionExcluir = btExcluir.getOnAction();
-			btExcluir.setText("Cancelar");
-			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					retireDoEstadodeDeEdicao();
-				}
-			});
+			trocaFuncaoDoBotao();
 		}
 	}
 
@@ -142,12 +136,36 @@ public class UsuarioController implements Initializable {
 
 		service.salva(user);
 		AdicioneNaGrid();
+		trocaFuncaoDoBotao();
 		btEditar.setDisable(false);
 		btExcluir.setDisable(false);
 		btExcluir.setDisable(true);
 		btEditar.setDisable(true);
 		clear();
 
+	}
+
+	private void trocaFuncaoDoBotao() {
+
+		if (btEditar.isHover()) {
+
+			btExcluir.setText("Cancelar");
+			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					retireDoEstadodeDeEdicao();
+				}
+			});
+
+		} else if (btSalvar.isHover()) {
+			btExcluir.setText("Excluir");
+			btExcluir.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					retireDoEstadodeDeEdicao();
+				}
+			});
+		}
 	}
 
 	public void selecao() {
