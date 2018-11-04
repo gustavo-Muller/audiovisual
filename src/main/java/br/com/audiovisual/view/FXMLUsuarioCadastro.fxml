@@ -65,8 +65,8 @@
 									</GridPane.margin>
 								</JFXTextField>
 								<JFXButton fx:id="btSalvar" buttonType="RAISED" onAction="#salvar" prefHeight="25.0" prefWidth="93.0" text="Salvar" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-								<JFXButton fx:id="btEditar" buttonType="RAISED" onAction="#editar" prefHeight="25.0" prefWidth="93.0" text="Editar" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-								<JFXButton fx:id="btExcluir" buttonType="RAISED" onAction="#excluir" prefHeight="25.0" prefWidth="91.0" text="Excluir" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+								<JFXButton fx:id="btEditar" buttonType="RAISED" disable="true" onAction="#editar" prefHeight="25.0" prefWidth="93.0" text="Editar" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+								<JFXButton fx:id="btExcluir" buttonType="RAISED" disable="true" onAction="#excluir" prefHeight="25.0" prefWidth="91.0" text="Excluir" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <JFXButton fx:id="btCancelar" buttonType="RAISED" onAction="#cancelar" text="Cancelar" visible="false" GridPane.columnIndex="2" />
 							</children>
 						</GridPane>

@@ -76,9 +76,10 @@ public class UsuarioController implements Initializable {
 		clear();
 		usuarioSelecionado = new Usuario();
 		user = new Usuario();
-		btEditar.setDisable(false);
+
 		btExcluir.setDisable(false);
 		btCancelar.setVisible(false);
+		btEditar.setDisable(true);
 	}
 
 	@Override
@@ -113,10 +114,13 @@ public class UsuarioController implements Initializable {
 			this.service.ecluirUsuario(usuarioSelecionado);
 			AdicioneNaGrid();
 			usuarioSelecionado = new Usuario();
-			clear();
 		} else {
 			clear();
 		}
+
+		btExcluir.setDisable(true);
+		btEditar.setDisable(true);
+		clear();
 	}
 
 //	private void validaExclusao() {
@@ -125,23 +129,26 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	void salvar(ActionEvent event) throws DadosInvalidosExeption, SQLException {
-		validaCampos();
 		montaObjeto();
+		validaCampos();
+
 		if (podeSalvar == true) {
 			service.salva(user);
 			AdicioneNaGrid();
 			btEditar.setDisable(false);
 			btExcluir.setDisable(false);
-			clear();
-			usuarioSelecionado = new Usuario();
-			user = new Usuario();
 			btCancelar.setVisible(false);
+			btExcluir.setDisable(true);
+			btEditar.setDisable(true);
+			clear();
 		}
-
+		
 	}
 
 	public void selecao() {
 		usuarioSelecionado = this.tblUsuarios.getSelectionModel().getSelectedItem();
+		btExcluir.setDisable(false);
+		btEditar.setDisable(false);
 
 	}
 
@@ -154,21 +161,24 @@ public class UsuarioController implements Initializable {
 	}
 
 	private void clear() {
-		txtCelular.setText(null);
-		txtEmail.setText(null);
-		txtNome.setText(null);
-		txtTelefone.setText(null);
+		txtCelular.clear();
+		txtEmail.clear();
+		txtTelefone.clear();
+		txtNome.clear();
 		cbTipoPessoa.setValue(null);
+	
+		user = new Usuario();
+		usuarioSelecionado = new Usuario();
 	}
 
 	public boolean validaCampos() {
-		if (txtNome.getText().isEmpty()) {
+		if (txtNome.getText().isEmpty() || txtNome.getText() == null) {
 			Utils.showMessage(AlertType.INFORMATION, "Nome e um campo de Preenchimento OBRIGATÓRIO!");
 			podeSalvar = false;
-		} else if (txtEmail.getText().isEmpty()) {
+		} else if (txtEmail.getText().isEmpty() || txtEmail.getText() == null) {
 			Utils.showMessage(AlertType.INFORMATION, "E-mail e um campo de Preenchimento OBRIGATÓRIO!");
 			podeSalvar = false;
-		} else if (cbTipoPessoa.getSelectionModel().isEmpty()) {
+		} else if (cbTipoPessoa.getSelectionModel().isEmpty() || cbTipoPessoa.getSelectionModel() == null) {
 			Utils.showMessage(AlertType.INFORMATION, "Tipo e um campo de Preenchimento OBRIGATÓRIO!");
 			podeSalvar = false;
 		} else {
