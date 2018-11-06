@@ -44,7 +44,7 @@
 										<Insets bottom="80.0" left="20.0" right="80.0" top="80.0" />
 									</GridPane.margin>
 								</JFXTextField>
-								<JFXTextField fx:id="txtCelular" GridPane.columnIndex="1" GridPane.rowIndex="2">
+								<JFXTextField fx:id="txtCelular" onKeyReleased="#mascaraTElefone" GridPane.columnIndex="1" GridPane.rowIndex="2">
 									<GridPane.margin>
 										<Insets bottom="95.0" left="20.0" right="350.0" top="80.0" />
 									</GridPane.margin>

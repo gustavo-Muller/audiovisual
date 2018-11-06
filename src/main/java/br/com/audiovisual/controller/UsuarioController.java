@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import br.com.audiovisual.Exeption.DadosInvalidosExeption;
+import br.com.audiovisual.Utils.Mask;
+import br.com.audiovisual.Utils.TextFieldFormatter;
 import br.com.audiovisual.Utils.Utils;
 import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
@@ -60,7 +62,7 @@ public class UsuarioController implements Initializable {
 
 	@FXML
 	private TableView<Usuario> tblUsuarios;
-
+	
 	private UsuarioService service = new UsuarioService();
 	List<Usuario> usuarios = new ArrayList<>();
 	private Usuario user = new Usuario();
@@ -150,7 +152,12 @@ public class UsuarioController implements Initializable {
 		clear();
 
 	}
-
+	
+	@FXML
+	private void mascaraTElefone() {
+		Mask.mascaraTelefone(txtCelular);
+	}
+	
 	public void selecao() {
 		usuarioSelecionado = this.tblUsuarios.getSelectionModel().getSelectedItem();
 		btExcluir.setDisable(false);
