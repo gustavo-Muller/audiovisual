@@ -1,4 +1,4 @@
-package br.com.audiovisual.dao;
+package br.com.audiovisual.Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +27,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 	private final String salvar = "INSERT INTO equipamento(codigo, nome, descricao, marca, tipo)"
 			+ " VALUES(?, ?, ?, ?, ?)";
 	private final String listar = "SELECT e.idEquipamento, e.codigo, e.nome, e.descricao, e.tipo, \r\n"
-			+ "m.id, m.nome AS nome\r\n" + "FROM equipamento e\r\n" + "INNER JOIN marca m ON m.id = e.marca";
+			+ "m.id, m.nome AS Marca_nome\r\n" + "FROM equipamento e\r\n" + "INNER JOIN marca m ON m.id = e.marca";
 	private final String deletar = "DELETE FROM equipamento WHERE idEquipamento = ?";
 	private final String editar = "UPDATE equipamento SET codigo = ?, nome = ?, descricao = ?, marca = ?, tipo = ? WHERE idEquipamento = ?";
 
@@ -100,7 +100,7 @@ public class EquipamentoDao implements InterfaceDAO<Equipamento> {
 			equipamento.setCodigo(res.getString("codigo"));
 
 			marca.setId(res.getLong("id"));
-			marca.setNome(res.getString("nome"));
+			marca.setNome(res.getString("Marca_nome"));
 
 			equipamento.setTipo(res.getLong("tipo"));
 			equipamento.setMarca(marca);

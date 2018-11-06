@@ -1,4 +1,4 @@
-package br.com.audiovisual.dao;
+package br.com.audiovisual.Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

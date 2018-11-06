@@ -34,20 +34,13 @@ CREATE TABLE IF NOT EXISTS equipamento(
    );
 
 
-CREATE TABLE IF NOT EXISTS data_hora(
-  `idData_hora` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `data_retirada` datetime NOT NULL,
-  `data_devolucao` datetime NOT NULL
-  );
-
-
 
 CREATE TABLE IF NOT EXISTS aluguel (
   `idAluguel` INT(11) NOT NULL PRIMARY KEY  AUTO_INCREMENT,
   `Usuario_idUsuario` INT NOT NULL,
-  `Data_hora_idData_hora` INT NOT NULL,
-    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`id`),
-    FOREIGN KEY (`Data_hora_idData_hora`) REFERENCES `data_hora` (`idData_hora`)
+  `data_retirada` datetime NOT NULL,
+  `data_devolucao` datetime NOT NULL,
+    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`id`)
     );
    
 

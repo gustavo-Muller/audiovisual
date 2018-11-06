@@ -11,7 +11,6 @@ public class DadosInvalidosExeption extends RegraDeNegocioExeption {
 	}
 	
 	public DadosInvalidosExeption(String message) {
-		Utils.showMessageError("Dados Invalidos");
 		Utils.showMessageError(message);
 	}
 	

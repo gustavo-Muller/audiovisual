@@ -1,4 +1,4 @@
-package br.com.audiovisual.dao;
+package br.com.audiovisual.Dao;
 
 import java.sql.SQLException;
 import java.util.List;

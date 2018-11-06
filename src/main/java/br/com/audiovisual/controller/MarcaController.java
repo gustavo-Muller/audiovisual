@@ -64,13 +64,13 @@ public class MarcaController implements Initializable {
 		if (!possuiEquipamentoSelecionado()) {
 			return;
 		}
-		
+
 		exibaMarcaNosCampos();
-		
+
 		ehEdicao = true;
 		btEditar.setDisable(true);
 		btExcluir.setText("Cancelar");
-		
+
 		actionExcluir = btExcluir.getOnAction();
 		btExcluir.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -79,7 +79,6 @@ public class MarcaController implements Initializable {
 			}
 		});
 
-		
 	}
 
 	private void retireDoEstadodeDeEdicao() {
@@ -99,28 +98,40 @@ public class MarcaController implements Initializable {
 		if (!podeMontarMarca())
 			return;
 
-		monteMarca();
-
 		if (ehEdicao) {
+			marca = tbMarca.getSelectionModel().getSelectedItem();
 			service.editar(marca);
+			retireDoEstadodeDeEdicao();
 		} else {
+			monteMarca();
 			service.salvar(marca);
 		}
+
 		clear();
 		atualizeGrid();
 	}
 
 	@FXML
-	void excluir() throws SQLException {
+	void excluir() {
 		if (!possuiEquipamentoSelecionado())
 			return;
-		
+
 		boolean confirmou = Utils.showConfirmationMessage(AlertType.CONFIRMATION, "Deseja mesmo excluir?");
-		if(!confirmou) return;
-		
+		if (!confirmou)
+			return;
+
 		marca = tbMarca.getSelectionModel().getSelectedItem();
-		service.excluir(marca.getId());
-		atualizeGrid();
+
+		try {
+
+			service.excluir(marca.getId());
+			atualizeGrid();
+
+		} catch (SQLException | DadosInvalidosExeption e) {
+
+			e.printStackTrace();
+
+		}
 	}
 
 	private boolean possuiEquipamentoSelecionado() {
@@ -142,7 +153,7 @@ public class MarcaController implements Initializable {
 	}
 
 	public boolean podeMontarMarca() {
-		if (txtNomeMarca.getText().isEmpty()) {
+		if (txtNomeMarca.getText().isEmpty() || txtNomeMarca.getText() == null) {
 			Utils.showMessage(AlertType.INFORMATION, "Nome e um campo de Preenchimento OBRIGATÓRIRO!");
 			return false;
 		}

@@ -11,7 +11,6 @@ import com.jfoenix.controls.JFXTextField;
 
 import br.com.audiovisual.Exeption.DadosInvalidosExeption;
 import br.com.audiovisual.Utils.Mask;
-import br.com.audiovisual.Utils.TextFieldFormatter;
 import br.com.audiovisual.Utils.Utils;
 import br.com.audiovisual.enumerador.TipoUsuario;
 import br.com.audiovisual.model.Usuario;
